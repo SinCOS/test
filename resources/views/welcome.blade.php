@@ -1,95 +1,154 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{$name}</title>
 
-        <title>Laravel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no,email=no" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="author" content=""/>
+    <meta name="url" content=""/>
+    <link rel="stylesheet" href="/app/css/web.css">
+    <link rel="stylesheet" href="/app/css/style.css">
+    <link rel="stylesheet" media="screen and (max-width:325px)"  href="/app/css/min.css">
+    <link rel="stylesheet" media="screen and (min-width:760px)"  href="/app/css/max.css">
+    <!-- zepto 库 -->
+    <script type="text/javascript" src="/app/js/zepto.js"></script>
+    <script src="/app/js/jweixin-1.0.0.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="/app/css/active.css">
+</head>
+<body class="web bmargin">
+<!-- header start -->
+<header>
+    <div class="banner">
+          <div id="slider" class="swipe">
+                    <ul class="swipe-wrap">
+                        @foreach($banner as $item)
+                       
+                             <li>
+                                    <a href="{{ $item->link }}">
+                                     <img src="/uploads/{{ $item->link }}">
+                                      </a>
+                             </li>
+                        @endforeach
+                   </ul>
+                <ul class="slide-trigger">
+                    {loop $lunbo $k $row}
+                    <li></li>
+                    {/loop}
+                </ul>
+          </div>
+    </div>
+</header>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+<article>
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
+    <div class="first-title">
+        <p> <span></span>
+            {$wenzi}
+        </p>
+        <h2>推荐借款</h2>
+    </div>
 
-            .full-height {
-                height: 100vh;
-            }
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+    <div class="proList">
 
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
+        {loop $jiedai $k $row}
+        <a href="#">
+            <div class="plist clearfix">
+                <div class="pleft">
+                    <em>奖1%</em>
+                    <em class="dxb">VIP</em>
+                    <h2><big>9</big>% <i>+1</i></h2>
+                    <p>借款期限：{$row['jkqx']}个月</p>
                 </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                <div class="pright">
+                        <em class="em"></em>
+                        <h3 class="fangdai">{$row['dyxx']}</h3>
+                        <p>借款金额：<big>{$row['jkje']}.00元</big></p>
+                        <!--<em style="color:#C1CDCD;"><还款中></em>-->
+                        <em><投标中></em>
+                        <div class="profirst">
+                            <div class="progress">
+                                <div class="pro-inter" style="width:0%;"></div>
+                            </div>
+                            <div class="pro-data">0%</div>
+                        </div>
                 </div>
             </div>
+        </a>
+        {/loop}
+
+    </div>
+
+</article>
+
+
+<!--active 框-->
+<div class="mask active_box" style="display:none;">
+    <div class="tan_box">
+        <img class="tan_close" data-id="close" src="picture/error.png" alt="">
+    </div>
+    <div class="tan_content">
+        <div class="tanwei_bg">
+            <img class="weixin_1" src="picture/weitan_0.png" alt="">
         </div>
-    </body>
+        <a  class="tan_btn" href="/turntables/toTurntableActive"><img src="picture/weixin_btn2.png" alt=""></a>
+    </div>
+</div>
+
+
+
+
+
+
+<nav>
+    <ul class="nav_list clearfix">
+        <li class="child01 action" ><a href="{{ url('/home') }}"><span></span>首页</a></li>
+        <li class="child06 "><a href="#"><span></span><br>我要贷款</a></li>
+        <li class="child04 " ><a href="#"><span></span>我的</a></li>
+    </ul>
+</nav>
+
+
+
+
+<script type="text/javascript" src="/app/js/swipe.js"></script><!-- touch 插件 -->
+<script type="text/javascript" src="/app/js/appgesturepassword.js"></script>
+
+<script>
+    var slider = $('#slider');
+    slider.find(".slide-trigger").find("li").eq(0).addClass("cur");
+    var mySwipe = new Swipe(document.getElementById('slider'), {
+        speed: 400,
+        auto: 5000,
+        callback: function(index, elem) {
+            slider.find(".slide-trigger").find("li").eq(index).addClass("cur").siblings().removeClass("cur");
+        }
+    });
+
+    window.onload=function(){
+        $("#nh_modal2").click(function(){
+            $(".newhand").removeClass('newhand_modal');
+            $("#nh_modal2,#nh_modal").hide();
+        });
+    };
+
+    function saveStorage(str){
+        var message = localStorage.getItem('message');
+        if(message == null){
+            $(".newhand").addClass('newhand_modal');
+            $("#nh_modal,#nh_modal2").show();
+
+            localStorage.setItem('message',str);
+
+        }
+    }
+</script>
+
+</body>
 </html>

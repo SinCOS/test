@@ -1,0 +1,158 @@
+﻿body, html { font-size: 100%;	padding: 0; margin: 0; color: #666;}
+
+/* Reset */
+*,
+*:after,
+*:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+body{
+  font: .85em/1.4 "微软雅黑","Microsoft Yahei",'Arial','san-serif';
+}
+/*-webkit-overflow-scrolling : touch;*/
+
+input[type="button"], input[type="submit"], input[type="reset"] {
+  -webkit-appearance: none;
+  border-radius: 0;
+  -webkit-user-modify: read-write-plaintext-only
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button{
+  -webkit-appearance: none !important;
+  margin: 0;
+}
+input[type="number"]{-moz-appearance:textfield;
+  -webkit-user-modify: read-write-plaintext-only}
+
+a{-webkit-tap-highlight-color: rgba(0,0,0,0); color: #2fa0ec;text-decoration: none; outline: none;}
+a:hover,a:focus{color:#0082d9;}
+
+.clear{ clear: both}
+
+/* public */
+.red{color:#f43b39;}
+.blue{color:#00beff;}
+.cblack{color:#666!important;}
+.c999{color:#999!important;}
+.cFDB128{color: #FDB128!important;}
+.dis-non{ display: none!important;}
+.width100{width: 100%;}
+.mt-0{margin-top: 0rem!important;}
+.mt-2{margin-top: 2rem!important;}
+.mt-1{margin-top: 1rem!important;}
+
+.display-none{ display: none!important;}
+.cut_str{overflow: hidden;white-space: nowrap;-o-text-overflow: ellipsis;text-overflow: ellipsis;} /* () 截串 */
+/*按钮*/
+.btn{overflow: visible;/* 明显的 明显显示*/-pie-lazy-init: true; display:inline-block; height:2rem; line-height:2rem; padding:0 10px; color:#fff; cursor:pointer; text-align:center; border-radius:2px; text-decoration:none!important;}
+.btnError{ background:#f43b39;}
+.btnTrans{ background:none; border:1px solid #fff; border-radius: .2rem;}
+.btnGray{ background: #ccc; color: white}
+.btnWhite{ background:white; border-radius: .2rem; color:#666}
+.btnBlue{ background:#00beff; border-radius: .2rem;}
+.btnBlueLink{ color:#00beff; text-decoration: underline!important;}
+.btnGreen{ background: #00ce52; border-radius: .2rem;}
+
+/* 弹出层 */
+.animated{
+  -webkit-animation-duration:1s;
+  animation-duration:1s;
+  -webkit-animation-fill-mode:both;
+  animation-fill-mode:both;
+}
+.animated.infinite{
+  -webkit-animation-iteration-count:infinite;
+  animation-iteration-count:infinite
+}
+.animated.hinge{
+  -webkit-animation-duration:1s;
+  animation-duration:1s;
+}
+@-webkit-keyframes fadeInUpBig{
+  0%{
+    opacity:0;
+    -webkit-transform:translateY(2000px);
+    transform:translateY(2000px)
+  }100%{
+     opacity:1;
+     -webkit-transform:translateY(0);
+     transform:translateY(0)
+   }
+}
+@keyframes fadeInUpBig{
+  0%{
+    opacity:0;
+    -webkit-transform:translateY(2000px);
+    -ms-transform:translateY(2000px);
+    transform:translateY(2000px)
+  }100%{
+     opacity:1;
+     -webkit-transform:translateY(0);
+     -ms-transform:translateY(0);
+     transform:translateY(0)
+   }
+}
+.fadeInUpBig{
+  -webkit-animation-name:fadeInUpBig;
+  animation-name:fadeInUpBig
+}
+
+@-webkit-keyframes fadeInDownBig{
+  0%{
+    opacity:0;
+    -webkit-transform:translateY(-500px);
+    transform:translateY(-500px)
+  }100%{
+     opacity:1;
+     -webkit-transform:translateY(0);
+     transform:translateY(0)
+   }
+}
+@keyframes fadeInDownBig{
+  0%{
+    opacity:0;
+    -webkit-transform:translateY(-500px);
+    -ms-transform:translateY(-500px);
+    transform:translateY(-500px)
+  }100%{
+     opacity:1;
+     -webkit-transform:translateY(0);
+     -ms-transform:translateY(0);
+     transform:translateY(0)
+   }
+}
+.fadeInDownBig{
+  -webkit-animation-name:fadeInDownBig;
+  animation-name:fadeInDownBig
+}
+.mask{ position: fixed; top: 0px; bottom: 0px; left: 0px; right: 0px; background:rgba(0,0,0,.5);z-index: 99;}
+.mask .context{ width: 70%; margin:0 auto; margin-top: 7rem; background:#fff; z-index: 100;}
+.mask .context .mask-cont{ line-height: 2.5rem; font-size: 1rem;}
+.mask .context .mask-cont .left{ float: left; text-indent: 1rem;}
+.mask .context .mask_conte{ border-bottom: 1px solid #ccc;}
+.mask .context .mask_title{ border-bottom: 1px solid #ccc;}
+.mask .context .mask-cont .right{ float: right; margin-right: 1rem; font-size: 1.7rem;}
+.mask .context .mask_conte{ line-height: 1.8rem; padding:1rem; text-indent: 2rem;}
+
+.mask .context .mask_bot{ text-align: right;}
+.mask .context .mask_bot a.btn{ padding:0 1.3rem; margin-right:1rem;}
+
+.tips .context .mask_title{ text-indent: 10px; height: 30px; line-height: 30px;}
+.tips .context .mask-cont{ text-align: center;}
+.tips .context .mask_bot{text-align: center; padding-bottom: 10px;}
+.tips .context p{font-size: .7rem;line-height: 6em;}
+.tips .context{ position: absolute; left: 50%; top: 50%; margin-left: -35%; margin-top: -80px; }

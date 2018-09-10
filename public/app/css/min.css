@@ -1,0 +1,36 @@
+﻿/* 找回密码 */
+.findPwdIpt h3{ font-size: .9rem;}
+.findPwdIpt h3 small{ margin-left: .2rem; font-size: .6rem;}
+/* 详情页 */
+.detail .content .head{font-size: 1rem;}
+/* 首页 */
+.first-title h2{ height: 2.2rem; line-height: 2.2rem; font-size: 1.1rem;}
+.first-title p{ font-size: .7rem; color: #999;}
+.proList .plist .pleft em{ font-size: 8px; height: 1.2rem; }
+.proList .plist .pleft em{ left: 10px;}
+.proList .plist .pleft em.dxb{left:60px;}
+.proList .plist{ padding-bottom: 7px;}
+.proList .plist .pleft h2{ height: 80px; line-height: 80px; font-size: 1.5rem;}
+.proList .plist .pright p{ height: 30px; line-height: 30px;}
+.proList .plist .pright h3{ height: 30px; line-height: 30px;}
+.proList .plist .pright em{ margin:0rem;}
+/* 我的订单 */
+.payList .list>h2{height: 2.5rem;line-height: 2.5rem; padding-top: .5rem;}
+.payList .list{height: 7rem;}
+.payTitle .title{margin-left: 1rem;}
+.pays .title{ font-size: 1rem;}
+.payGroup{ padding-left: 1rem;}
+.payGroup span input{ width: 8rem;}
+.payGroup span a.forget{ margin-left: 0;}
+/* 绑定银行卡 */
+.bank .bankGroup .iptGroup input.ipt,.bank .bankGroup .iptGroup ul li select,.deGroup select{ height: 2.3rem; line-height: 2.3rem;}
+.deGroup>input{ height: 2.1rem; line-height: 2.1rem;}
+.bank .bankGroup .iptGroup ul li{ background-position: right .3rem top .3rem;}
+.deGroup{ background-position: right .3rem top .3rem;}
+.recharError p{ margin-left: 2rem;}
+/* 提现 */
+.safe .iptGroup, .safe .btnGroup{ max-width: 265px;}
+
+
+.font10{ font-size: .8rem; margin-right: 1rem; bottom:0px;}
+.pays>a.btn{ margin-left: 0rem;}

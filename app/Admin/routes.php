@@ -13,4 +13,5 @@ Route::group([
     $router->get('/', 'HomeController@index');
     $router->resource('users', UserController::class);
     $router->resource('debit-credit', DCController::class);
+    $router->resource('banner', BannerController::class);
 });

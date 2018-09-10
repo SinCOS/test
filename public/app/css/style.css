@@ -1,0 +1,128 @@
+﻿.banner {
+    width: 100%;
+    position: relative;
+}
+.banner .swipe {
+    overflow: hidden;
+    position: relative;
+}
+.banner .swipe-wrap {
+    overflow: hidden;
+    position: relative;
+    list-style: none;
+}
+.banner .swipe-wrap li {
+    float: left;
+    position: relative;
+}
+.banner img {
+    width: 100%;
+    vertical-align: middle;
+}
+.banner .slide-trigger {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 10;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    list-style: none;
+}
+.banner .slide-trigger li {
+    width: 10px;
+    height: 10px;
+    background: #FFF;
+    margin: 5px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+}
+.banner .slide-trigger .cur {
+    background: #2fc7c9;
+}
+
+/* dropload */
+.opacity{
+    -webkit-animation: opacity 0.5s linear;
+    animation: opacity 0.5s linear;
+}
+@-webkit-keyframes opacity {
+    0% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
+@keyframes opacity {
+    0% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
+
+.dropload-up,.dropload-down{
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    -webkit-transform:translate3d(0,0,0);
+    transform:translate3d(0,0,0);
+}
+.dropload-refresh,.dropload-update,.dropload-load{
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    -webkit-transform:translate(-50%,0);
+    transform:translate(-50%,0);
+}
+.dropload-load .loading{
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+    border-radius: 100%;
+    margin: 6px;
+    border: 2px solid #666;
+    border-bottom-color: transparent;
+    vertical-align: middle;
+    -webkit-animation: rotate 0.75s 0 linear infinite;
+    animation: rotate 0.75s 0 linear infinite;
+}
+@-webkit-keyframes rotate {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    50% {
+        -webkit-transform: rotate(180deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
