@@ -252,10 +252,6 @@
 
 
         <h3 class="head head-fangdai">
-
-
-
-
             抵押房
         </h3>
         <!-- data start -->
@@ -311,13 +307,13 @@
                 <!-- tab start -->
                 <div class="tab tab-borrow" id="tab-borrow" style="display:none">
                     <p class="title">性别：
-                        男                    </p>
+                        {{$item->sex}}                    </p>
                     <p class="title">婚姻状况：
-                        未婚                    </p>
+                        {{$item->married}}                  </p>
                     <p class="title">最高学历：
-                        研究生                    </p>
+                        {{$item->graded}}                    </p>
                     <p class="title">
-                        现居住地：辽宁省海东区施家路113号</p>
+                        现居住地：{{$item->address}}</p>
                     <p class="title">月均收入：30000.00元</p>
                     <p class="title">年均收入：360000.00元</p>
                 </div>
