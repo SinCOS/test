@@ -16,3 +16,5 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/detail','HomeController@detail')->name('detail');
+Route::get('/home','HomeController@home')->name("userCenter");
+Route::get('/apply','HomeController@apply')->name("apply");

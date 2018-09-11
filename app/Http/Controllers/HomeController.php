@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Banner;
+use App\User;
 class HomeController extends Controller
 {
     /**
@@ -29,5 +30,12 @@ class HomeController extends Controller
     }
     public function detail(){
         return view('detail');
+    }
+    public function apply(){
+        return view('apply');
+    }
+    public function home(){
+        $user = User::find(1);
+        return view('usercenter',['user' => $user]);
     }
 }

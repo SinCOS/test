@@ -109,7 +109,7 @@
 <nav>
     <ul class="nav_list clearfix">
         <li class="child01 action" ><a href="{{ url('/') }}"><span></span>首页</a></li>
-        <li class="child06 "><a href="#"><span></span><br>我要贷款</a></li>
+        <li class="child06 "><a href='/apply'><span></span><br>我要贷款</a></li>
         <li class="child04 " ><a href="{{ url('/home')}}"><span></span>我的</a></li>
     </ul>
 </nav>
