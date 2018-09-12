@@ -14,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-       // $this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**
@@ -35,7 +35,7 @@ class HomeController extends Controller
         return view('apply');
     }
     public function home(){
-        $user = User::find(1);
+        $user = \Auth::user();
         return view('usercenter',['user' => $user]);
     }
 }
