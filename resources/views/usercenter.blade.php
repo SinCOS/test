@@ -84,7 +84,7 @@
 
     <div class="list1">
         <div class="wp_foot">
-            <p><a href="javascript:;">{$banquan}</a> | <a href="javascript:;">客户端</a></p>
+            <p><a href="javascript:;">版权所有</a> | <a href="javascript:;">客户端</a></p>
         </div>
     </div>
 </div>

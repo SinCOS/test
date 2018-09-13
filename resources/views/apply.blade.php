@@ -2,11 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
      <link rel="stylesheet" href="http://www.luckwo.com/web/resource/css/bootstrap.min.css?v=20170426">
     <link rel="stylesheet" href="http://www.luckwo.com/web/resource/css/common.css?v=20170426">
+    <link rel="stylesheet" type="text/css" href="/vendor/laravel-admin/bootstrap-fileinput/css/fileinput.min.css?v=4.3.7">
+        <script src="http://localhost:8000/vendor/laravel-admin/AdminLTE/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <script src="http://localhost:8000/vendor/laravel-admin/AdminLTE/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
     <div class="main">
@@ -18,7 +21,7 @@
     </style>
 
 
-    <div class="clearfix" id='app'>
+    <div class="clearfix " id='app'>
         <form class="form-horizontal form" action="" method="post" enctype="multipart/form-data">
             <div class="panel panel-default">
                 <div class="panel-heading">信息编辑</div>
@@ -128,6 +131,18 @@
                         </div>
                     </div>
 
+                      <div class="form-group  ">
+
+    <label for="avatar" class="col-xs-12 col-sm-4 col-md-3 col-lg-2 control-label">头像</label>
+
+    <div class="col-sm-8 col-xs-12" style="padding-right: 20px;">
+
+        
+        <input type="file" class="avatar" name="avatar" multiple data-initial-preview="http://localhost:8000/vendor/laravel-admin/AdminLTE/dist/img/user2-160x160.jpg;http://localhost:8000/vendor/laravel-admin/AdminLTE/dist/img/user2-160x160.jpg" data-initial-caption="user2-160x160.jpg" />
+
+        
+    </div>
+</div>
 
 
                 </div>
@@ -142,7 +157,17 @@
     </div>
 </div>
 </body>
+<script src="http://localhost:8000/vendor/laravel-admin/bootstrap-fileinput/js/plugins/canvas-to-blob.min.js?v=4.3.7"></script>
+<script src="http://localhost:8000/vendor/laravel-admin/bootstrap-fileinput/js/fileinput.min.js?v=4.3.7"></script>
 <script src="https://cdn.bootcss.com/vue/2.5.15/vue.js"></script>
+      <script data-exec-on-popstate>
+
+    $(function () {
+                    
+$("input.avatar").fileinput({"maxFileCount": 4,"overwriteInitial":true,"initialPreviewAsData":true,"browseLabel":"\u6d4f\u89c8","showRemove":true,"showUpload":false,"deleteExtraData":{"avatar":"_file_del_","_file_del_":"","_token":"duzkMnsdtbEzTpnMlX1FUV3AiGXTs6cTdrd5hLF3","_method":"PUT"},"deleteUrl":"http:\/\/localhost:8000\/admin\/1","allowedFileTypes":["image"]});
+
+            });
+</script>
 <script>
     var app = new Vue({
         el: '#app',

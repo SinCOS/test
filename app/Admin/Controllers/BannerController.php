@@ -95,7 +95,7 @@ class BannerController extends Controller
         return Admin::form(Banner::class, function (Form $form) {
 
             $form->display('id', 'ID');
-            $form->image('pic','图片');
+            $form->image('pic','图片')->uniqueName();
             $form->text('link','链接');
             $form->number('sort','排序');
             $form->switch('status','状态');
