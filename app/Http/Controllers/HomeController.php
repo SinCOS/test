@@ -34,8 +34,31 @@ class HomeController extends Controller
     public function apply(){
         return view('apply');
     }
+    public function apply_store(){
+        return ['status' => 0];
+    }
     public function home(){
         $user = \Auth::user();
         return view('usercenter',['user' => $user]);
+    }
+    public function uploadimg(Request $request)
+    {
+  
+        if($request->isMethod('post'))
+        {
+      
+            $file =  $request->file('avatar');
+            
+            if($file){
+                $extension = $file->guessExtension();
+                $newName = str_random(18).".".$extension;
+                $file->move(base_path().'/public/uploads/images/',$newName);
+                $idCardFrontImg = '/uploads/images/'.$newName;
+                return json_encode($idCardFrontImg);
+            }else{
+                $idCardFrontImg = '';
+                return json_encode($idCardFrontImg);
+            }
+        }
     }
 }

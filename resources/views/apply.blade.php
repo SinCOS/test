@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width,user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-     <link rel="stylesheet" href="http://www.luckwo.com/web/resource/css/bootstrap.min.css?v=20170426">
-    <link rel="stylesheet" href="http://www.luckwo.com/web/resource/css/common.css?v=20170426">
-    <link rel="stylesheet" type="text/css" href="/vendor/laravel-admin/bootstrap-fileinput/css/fileinput.min.css?v=4.3.7">
-        <script src="http://localhost:8000/vendor/laravel-admin/AdminLTE/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+     <link rel="stylesheet" href="/vendor/laravel-admin/AdminLTE/bootstrap/css/bootstrap.min.css">
+    {{-- <link rel="stylesheet" href="http://www.luckwo.com/web/resource/css/common.css?v=20170426"> --}}
+
+    <script src="http://localhost:8000/vendor/laravel-admin/AdminLTE/plugins/jQuery/jQuery-2.1.4.min.js"></script>
     <script src="http://localhost:8000/vendor/laravel-admin/AdminLTE/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
@@ -133,12 +133,12 @@
 
                       <div class="form-group  ">
 
-    <label for="avatar" class="col-xs-12 col-sm-4 col-md-3 col-lg-2 control-label">头像</label>
+    <label for="avatar" class="col-xs-12 col-sm-4 col-md-3 col-lg-2 control-label">照片（房产证、土地证、行驶证、身份证正反面、户口本、驾驶证）</label>
 
-    <div class="col-sm-8 col-xs-12" style="padding-right: 20px;">
+    <div class="col-sm-8 col-xs-12">
 
         
-        <input type="file" class="avatar" name="avatar" multiple data-initial-preview="http://localhost:8000/vendor/laravel-admin/AdminLTE/dist/img/user2-160x160.jpg;http://localhost:8000/vendor/laravel-admin/AdminLTE/dist/img/user2-160x160.jpg" data-initial-caption="user2-160x160.jpg" />
+        <input type="file" id='file' class="file" name="avatar" multiple=true />
 
         
     </div>
@@ -157,20 +157,56 @@
     </div>
 </div>
 </body>
-<script src="http://localhost:8000/vendor/laravel-admin/bootstrap-fileinput/js/plugins/canvas-to-blob.min.js?v=4.3.7"></script>
-<script src="http://localhost:8000/vendor/laravel-admin/bootstrap-fileinput/js/fileinput.min.js?v=4.3.7"></script>
+<link href="https://cdn.bootcss.com/bootstrap-fileinput/4.4.8/css/fileinput.min.css" rel="stylesheet">
+
+<script src="https://cdn.bootcss.com/bootstrap-fileinput/4.4.8/js/fileinput.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap-fileinput/4.4.8/js/locales/zh.min.js"></script>
 <script src="https://cdn.bootcss.com/vue/2.5.15/vue.js"></script>
-      <script data-exec-on-popstate>
+      <script>
 
+function getCookie(name) 
+{ 
+    var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+ 
+    if(arr=document.cookie.match(reg))
+ 
+        return unescape(arr[2]); 
+    else 
+        return null; 
+} 
     $(function () {
-                    
-$("input.avatar").fileinput({"maxFileCount": 4,"overwriteInitial":true,"initialPreviewAsData":true,"browseLabel":"\u6d4f\u89c8","showRemove":true,"showUpload":false,"deleteExtraData":{"avatar":"_file_del_","_file_del_":"","_token":"duzkMnsdtbEzTpnMlX1FUV3AiGXTs6cTdrd5hLF3","_method":"PUT"},"deleteUrl":"http:\/\/localhost:8000\/admin\/1","allowedFileTypes":["image"]});
-
-            });
+        $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': getCookie('XSRF-TOKEN')
+        }
+    });
+    console.log(getCookie('XSRF-TOKEN'));
+});
 </script>
 <script>
     var app = new Vue({
         el: '#app',
+        mounted(){
+            let that = this;
+                $("#file").fileinput({
+                    uploadUrl: "{{route('uploadpic')}}",
+    uploadAsync:true,
+    showUpload:true,
+    language: 'zh',
+    maxFileCount: 4,
+    maxFileSize:2000,
+    shwoRemove: true,
+    dropZoneEnabled:false,
+    showPreview: true,
+    enctype: 'multipart/form-data',
+    allowedFileTypes:["image"]
+    }).on('filebatchselected',function(event,files){
+        $(this).fileinput('upload');
+    }).on('fileuploaded',function (event,data) {
+        console.log(data.response);
+        that.imglist.push(data.response)
+    });
+        },
         data:{
             nsjr: '',
             address: '',
@@ -182,7 +218,8 @@ $("input.avatar").fileinput({"maxFileCount": 4,"overwriteInitial":true,"initialP
             jkje: '',
             jkqx: '',
             hkfs: '',
-            dyxx: ''
+            dyxx: '',
+            imglist:[]
 
         },
         methods:{
