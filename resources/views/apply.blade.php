@@ -8,8 +8,8 @@
      <link rel="stylesheet" href="/vendor/laravel-admin/AdminLTE/bootstrap/css/bootstrap.min.css">
     {{-- <link rel="stylesheet" href="http://www.luckwo.com/web/resource/css/common.css?v=20170426"> --}}
 
-    <script src="http://localhost:8000/vendor/laravel-admin/AdminLTE/plugins/jQuery/jQuery-2.1.4.min.js"></script>
-    <script src="http://localhost:8000/vendor/laravel-admin/AdminLTE/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/vendor/laravel-admin/AdminLTE/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <script src="/vendor/laravel-admin/AdminLTE/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
     <div class="main">
