@@ -22,7 +22,7 @@
 
 
     <div class="clearfix " id='app'>
-        <form class="form-horizontal form" action="" method="post" enctype="multipart/form-data">
+        <form class="form-horizontal form" action="" method="post" enctype="multipart/form-data" @submit.prevent="submit">
             <div class="panel panel-default">
                 <div class="panel-heading">信息编辑</div>
                 <div class="panel-body">
@@ -127,7 +127,7 @@
                     <div class="form-group">
                         <label class="col-xs-12 col-sm-4 col-md-3 col-lg-2 control-label"><span style="color:red;">*</span>年均收入：</label>
                         <div class="col-sm-8 col-xs-12">
-                            <input type="number" class="form-control" placeholder="填写纯数字" v-model='nsjr' name="njsr" value="" required="required" >
+                            <input type="number" class="form-control" placeholder="填写纯数字" v-model='njsr' name="njsr" value="" required="required" >
                         </div>
                     </div>
 
@@ -150,7 +150,6 @@
             <div class="form-group">
                 <div class="col-sm-12">
                     <input name="submit" type="submit" value="提交" class="btn btn-primary col-lg-1" style="margin-left:5%;">
-                    <input type="hidden" name="token" value="" />
                 </div>
             </div>
         </form>
@@ -208,7 +207,7 @@ function getCookie(name)
     });
         },
         data:{
-            nsjr: '',
+            njsr: '',
             address: '',
             yjsr: '',
             zgxl: '',
@@ -223,7 +222,19 @@ function getCookie(name)
 
         },
         methods:{
-
+            submit(){
+                if(this.imglist.length < 2){
+                    alert("请上传证件照");
+                    return false;
+                }
+                $.post("/apply/"+'0', this.$data,
+                    function (data, textStatus, jqXHR) {
+                        console.log(data);
+                    },
+                    "json"
+                );
+                return true;
+            },
         }
     })
 </script>

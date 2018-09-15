@@ -49,7 +49,7 @@
 
     <div class="first-title">
         <p> <span></span>
-            {$wenzi}
+            测试信息
         </p>
         <h2>推荐借款</h2>
     </div>
@@ -57,19 +57,21 @@
 
     <div class="proList">
 
-        {loop $jiedai $k $row}
-        <a href="#">
+        @foreach ($dc as $item)
+            
+        
+        <a href="{{route('detail',['id'=>$item->id])}}">
             <div class="plist clearfix">
                 <div class="pleft">
                     <em>奖1%</em>
                     <em class="dxb">VIP</em>
-                    <h2><big>9</big>% <i>+1</i></h2>
-                    <p>借款期限：{$row['jkqx']}个月</p>
+                    <h2><big>{{$item->ll}}</big>% <i>+1</i></h2>
+                    <p>借款期限：{{$item->jkqx or 0}}个月</p>
                 </div>
                 <div class="pright">
                         <em class="em"></em>
-                        <h3 class="fangdai">{$row['dyxx']}</h3>
-                        <p>借款金额：<big>{$row['jkje']}.00元</big></p>
+                        <h3 class="fangdai">{{$item->dyxx}}</h3>
+                        <p>借款金额：<big>{{$item->jkje or 0}}元</big></p>
                         <!--<em style="color:#C1CDCD;"><还款中></em>-->
                         <em><投标中></em>
                         <div class="profirst">
@@ -81,7 +83,7 @@
                 </div>
             </div>
         </a>
-        {/loop}
+        @endforeach
 
     </div>
 

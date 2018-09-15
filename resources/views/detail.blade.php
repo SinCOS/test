@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>抵押房</title>
+    <title>{{$detail->dyxx}}</title>
+
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
@@ -242,7 +243,7 @@
         fBrowserRedirect();
     });
 </script>
-<script>;</script><script type="text/javascript" src="http://www.admin1994.com/app/index.php?i=2&c=utility&a=visit&do=showjs&m=mfy_p2p"></script></body>
+</body>
 </html>
 <!-- detail start -->
 <div class="detail">
@@ -252,21 +253,22 @@
 
 
         <h3 class="head head-fangdai">
-            抵押房
+
+
+
+
+           {{$detail->dyxx}}
+
         </h3>
         <!-- data start -->
         <div class="data clearfix">
 
                 <span>利率：<em
-                        class="red"><big>10+1</big>%</em></span>
-
-
-
-
-            <span>借款期限：<em>2个月</em></span>
-            <span>借款金额：<em>100000元</em></span>
+                        class="red"><big>{{$detail->ll}}+1</big>%</em></span>
+            <span>借款期限：<em>{{$detail->jkqx}}个月</em></span>
+            <span>借款金额：<em>{{$detail->jkje}}元</em></span>
             <span>起投金额：<em>100元</em></span>
-            <span>可投金额：<em class="blue">100000元</em></span>
+            <span>可投金额：<em class="blue">{{$detail->jkje}}元</em></span>
 			<span>进度
 	            <div class="progress">
                     <div class="pro-inter" style="width:0%;"></div>
@@ -296,26 +298,36 @@
                 <!-- tab start -->
                 <div class="tab tab-desc" id="tab-desc">
                     <p class="title">抵押信息：
-                        抵押房                    </p>
+                        {{$detail->dyxx}}
+                    
+                    </p>
                     <p class="title">还款方式：
-                        周期还利息，到期还本金                    </p>
+                        {{$detail->hkfs}}
+                      
+                    </p>
                     <p class="title">借款描述：</p>
-                    <p class="context">此标的为个人房产抵押类借款。借款人在天津与朋友经营公司，借款用于扩大经营，经公司风控人员核实，年流水可达660万元。房屋产权证已公示，房屋已做抵押登记及借款公证。风控团队已对客户的收入情况、抵押物的详细状况做了全面调查。                    </p>
+                    <p class="context">
+                        {{$detail->jkms}}
+                    </p>
                 </div>
                 <!-- tab end -->
 
                 <!-- tab start -->
                 <div class="tab tab-borrow" id="tab-borrow" style="display:none">
                     <p class="title">性别：
-                        {{$item->sex}}                    </p>
+                        {{$detail->sex}}
+                       
+                    </p>
                     <p class="title">婚姻状况：
-                        {{$item->married}}                  </p>
+                        {{$detail->hyzk}}
+                    </p>
                     <p class="title">最高学历：
-                        {{$item->graded}}                    </p>
+                        {{$detail->zgxl}}
+                    </p>
                     <p class="title">
-                        现居住地：{{$item->address}}</p>
-                    <p class="title">月均收入：30000.00元</p>
-                    <p class="title">年均收入：360000.00元</p>
+                        现居住地：{{$detail->address}}</p>
+                    <p class="title">月均收入：{{$detail->yjsr}}.00元</p>
+                    <p class="title">年均收入：{{$detail->njsr}}.00元</p>
                 </div>
                 <!-- tab end -->
 
@@ -485,9 +497,9 @@
 
 
 <!-- floatW start -->
-<form id="lendForm" method="post" action="./index.php?i=2&c=entry&do=Info&m=mfy_p2p" onsubmit="return moneyVail();">
+<form id="lendForm" method="post" action="###" onsubmit="return moneyVail();">
     <input type="hidden" name="tijiao" value="yes"/>
-    <input type="hidden" name="id" value="1"/>
+    <input type="hidden" name="id" value="{$id}"/>
     <input type="hidden" id="token" name="token" value="debd8bdb-221f-4de2-8c9d-d6ab618f56b8"/>
     <input type="hidden" id="loanApplicationId" name="loanApplicationId"
            value="2914"/>
@@ -497,7 +509,7 @@
         <div class="inputGroup lblTip clearfix">
             <span>账户余额</span>
 
-            <span><i>0</i>元</span>
+            <span><i>{{\Auth::user()->money}}</i>元</span>
 
         </div>
         <div class="inputGroup clearfix">
@@ -872,5 +884,5 @@
         j('#tab-prov img').fsgallery()
     })
 </script>
-<script>;</script><script type="text/javascript" src="http://www.admin1994.com/app/index.php?i=2&c=utility&a=visit&do=showjs&m=mfy_p2p"></script></body>
+</body>
 </html>

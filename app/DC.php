@@ -13,7 +13,7 @@ class DC extends Model
      * @var array
      */
     protected $fillable = [
-        'uid', 'vip_money', 'money','deadline','description','status','thumb'
+        'uid', 'jkje', 'dyxx','hkfs','jkms','sex','hyzk','zgxl','address','yjsr','njsr','imglist','jkqx'
     ];
 
     /**

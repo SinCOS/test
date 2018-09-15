@@ -24,7 +24,7 @@ class DCController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
+            $content->header('借贷审核');
             $content->description('description');
 
             $content->body($this->grid());
@@ -72,22 +72,27 @@ class DCController extends Controller
     protected function grid()
     {
         return Admin::grid(DC::class, function (Grid $grid) {
+            $grid->model()->orderBy('updated_at','desc');
             $grid->disableCreateButton();
             $grid->disableRowSelector();
+            $grid->filter(function($filter){
+                $filter->equal('status','状态')->select(['1'=>'通过','0'=>'未审核','-1'=>'未通过']);
+            });
             $grid->actions(function ($actions) {
                // $actions->disableDelete();
-                $actions->disableEdit();
+                //$actions->disableEdit();
         
                // $actions->disableView();
             });
             $grid->id('ID')->sortable();
             $grid->column('uid','用户名')->display(function($userId){
-                
-                return User::find($userId)->name;
+                return User::find($userId)->name ;
             });
-            $grid->column('description','描述');
+            
+            $grid->column('jkje','借款金额');
+             $grid->column('jkqx','借款期限(月)');
+            $grid->column('jkms','描述');
            
-            $grid->created_at('创建时间');
             $grid->updated_at('最后更新');
              $grid->column('status','审核')->editable('select', [1 => '审核通过', -1 => '审核失败', 0 => '未审核']);
         });
@@ -103,9 +108,34 @@ class DCController extends Controller
         return Admin::form(DC::class, function (Form $form) {
 
             $form->display('id', 'ID');
+            $form->display('uid','用户')->with(function($val){
+                return User::find($val)->name;
+            });
+            $form->display('uid','VIP')->with(function($val){
+                return User::find($val)->vip == 1 ? '是': '否';
+            });
+            $form->display('imglist','证件')->with(function($vals){
+                $imglist = json_decode($vals);
+                $imglist = array_map(function($val){
+                    return "<a target='_blank' href='{$val}' ><img src='{$val}'  width='60px' style='margin-right:10px;'/></a>";
+                },$imglist);
+                return implode('',$imglist);
+            });
+            
+            $form->text('ll','借款利率');
+            $form->display('jkje','借款金额');
+            $form->display('jkqx','借款期限');
+            $form->display('dyxx','抵押信息');
+            $form->display('hkfs','还款方式');
+            $form->display('jkms','借款描述');
+            $form->display('yjsr','月均收入');
+            $form->display('njsr','年均收入');
+            $form->display('hyzz','婚姻状况');
+            $form->display('zgxl','最高学历');
+            $form->display('address','居住地址');
             $form->switch('status','状态');
-            $form->display('created_at', 'Created At');
-            $form->display('updated_at', 'Updated At');
+
+            $form->display('updated_at', '申请时间');
         });
     }
 }

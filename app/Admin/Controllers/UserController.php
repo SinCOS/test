@@ -24,7 +24,7 @@ class UserController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
+            $content->header('用户列表');
             $content->description('description');
 
             $content->body($this->grid());
@@ -57,8 +57,8 @@ class UserController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('用户列表');
+            $content->description('');
 
             $content->body($this->form());
         });
@@ -76,8 +76,12 @@ class UserController extends Controller
             $grid->id('ID')->sortable();
             $grid->column('name');
             $grid->column('mobile','手机');
-            $grid->created_at();
-            $grid->updated_at();
+            $grid->column('money','余额');
+            $grid->column('vip','是否会员')->display(function($vip){
+                return $vip == 1 ? '是' :  '否';
+            });
+            $grid->created_at('注册时间');
+            //$grid->updated_at();
         });
     }
 
@@ -94,9 +98,9 @@ class UserController extends Controller
             $form->text('name','用户名');
             $form->password('password','密码');
             $form->email('mobile','手机');
-            
-            $form->display('created_at', 'Created At');
-            $form->display('updated_at', 'Updated At');
+            $form->display('money','余额');
+            $form->display('created_at', '注册时间');
+            //$form->display('updated_at', 'Updated At');
             $form->disableReset();
             $form->saving(function(Form $form){
                 if($form->password && $form->model()->password != $form->password){
