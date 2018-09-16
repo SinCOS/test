@@ -48,6 +48,7 @@
                         <label class="col-xs-12 col-sm-4 col-md-3 col-lg-2 control-label">抵押信息:</label>
                         <div class="col-sm-8 col-xs-12">
                             <select class="form-control" name="dyxx" v-model='dyxx'>
+                                <option value="信用借款">信用借款</option>
                                 <option value="抵押房">抵押房</option>
                                 <option value="抵押车" >抵押车</option>
                                 <option value="其他不动产">其他不动产</option>
