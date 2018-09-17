@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>{{$detail->dyxx}}</title>
      <link rel="stylesheet" href="/vendor/laravel-admin/AdminLTE/bootstrap/css/bootstrap.min.css">
     {{-- <link rel="stylesheet" href="http://www.luckwo.com/web/resource/css/common.css?v=20170426"> --}}
 
@@ -132,19 +132,30 @@
                         </div>
                     </div>
 
-                      <div class="form-group  ">
+                    <div class="form-group  ">
 
-    <label for="avatar" class="col-xs-12 col-sm-4 col-md-3 col-lg-2 control-label">照片（房产证、土地证、行驶证、身份证正反面、户口本、驾驶证）</label>
+                        <label for="avatar" class="col-xs-12 col-sm-4 col-md-3 col-lg-2 control-label">照片（房产证、土地证、行驶证、身份证正反面、户口本、驾驶证）</label>
 
-    <div class="col-sm-8 col-xs-12">
+                        <div class="col-sm-8 col-xs-12">
 
-        
-        <input type="file" id='file' class="file" name="avatar" multiple=true />
+                            
+                            <input type="file" id='file' class="file" name="avatar" multiple=true />
 
-        
-    </div>
-</div>
+                            
+                        </div>
+                    </div>
+                    <div class="form-group  ">
 
+                        <label for="avatar" class="col-xs-12 col-sm-4 col-md-3 col-lg-2 control-label">照片（房产证、土地证、行驶证、身份证正反面、户口本、驾驶证）</label>
+
+                        <div class="col-sm-8 col-xs-12">
+
+                            
+                            <input type="file" id='file' class="file" name="avatar" multiple=true />
+
+                            
+                        </div>
+                    </div>
 
                 </div>
             </div>
