@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{$detail->dyxx}}</title>
+    <title>编辑信息</title>
      <link rel="stylesheet" href="/vendor/laravel-admin/AdminLTE/bootstrap/css/bootstrap.min.css">
     {{-- <link rel="stylesheet" href="http://www.luckwo.com/web/resource/css/common.css?v=20170426"> --}}
 
@@ -133,30 +133,59 @@
                     </div>
 
                     <div class="form-group  ">
-
-                        <label for="avatar" class="col-xs-12 col-sm-4 col-md-3 col-lg-2 control-label">照片（房产证、土地证、行驶证、身份证正反面、户口本、驾驶证）</label>
-
+                        <label for="avatar" class="col-xs-12 col-sm-4 col-md-3 col-lg-2 control-label">房产证</label>
                         <div class="col-sm-8 col-xs-12">
-
-                            
-                            <input type="file" id='file' class="file" name="avatar" multiple=true />
-
-                            
+                            <input type="file" id='fcz' class="file" name="avatar"  />
                         </div>
                     </div>
                     <div class="form-group  ">
 
-                        <label for="avatar" class="col-xs-12 col-sm-4 col-md-3 col-lg-2 control-label">照片（房产证、土地证、行驶证、身份证正反面、户口本、驾驶证）</label>
+                        <label for="avatar" class="col-xs-12 col-sm-4 col-md-3 col-lg-2 control-label">土地证</label>
 
                         <div class="col-sm-8 col-xs-12">
-
-                            
-                            <input type="file" id='file' class="file" name="avatar" multiple=true />
-
-                            
+                            <input type="file" id='tdz' class="file" name="avatar"  />
                         </div>
                     </div>
+                    <div class="form-group  ">
 
+                        <label for="avatar" class="col-xs-12 col-sm-4 col-md-3 col-lg-2 control-label">行驶证</label>
+
+                        <div class="col-sm-8 col-xs-12">
+                            <input type="file" id='xsz' class="file" name="avatar"  />
+                        </div>
+                    </div>
+                     <div class="form-group  ">
+
+                        <label for="avatar" class="col-xs-12 col-sm-4 col-md-3 col-lg-2 control-label">身份证正面</label>
+
+                        <div class="col-sm-8 col-xs-12">
+                            <input type="file" id='sfzz' class="file" name="avatar"  />
+                        </div>
+                    </div>
+                    <div class="form-group  ">
+
+                        <label for="avatar" class="col-xs-12 col-sm-4 col-md-3 col-lg-2 control-label">身份证反面</label>
+
+                        <div class="col-sm-8 col-xs-12">
+                            <input type="file" id='sfzf' class="file" name="avatar"  />
+                        </div>
+                    </div>
+                    <div class="form-group  ">
+
+                        <label for="avatar" class="col-xs-12 col-sm-4 col-md-3 col-lg-2 control-label">户口本</label>
+
+                        <div class="col-sm-8 col-xs-12">
+                            <input type="file" id='hkb' class="file" name="avatar"  />
+                        </div>
+                    </div>
+                    <div class="form-group  ">
+
+                        <label for="avatar" class="col-xs-12 col-sm-4 col-md-3 col-lg-2 control-label">驾驶证</label>
+
+                        <div class="col-sm-8 col-xs-12">
+                            <input type="file" id='jsz' class="file" name="avatar"  />
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
@@ -199,14 +228,14 @@ function getCookie(name)
         el: '#app',
         mounted(){
             let that = this;
-                $("#file").fileinput({
+                $(".file").fileinput({
                     uploadUrl: "{{route('uploadpic')}}",
     uploadAsync:true,
-    showUpload:true,
+    showUpload:false,
     language: 'zh',
     maxFileCount: 4,
     maxFileSize:2000,
-    shwoRemove: true,
+    showRemove: false,
     dropZoneEnabled:false,
     showPreview: true,
     enctype: 'multipart/form-data',
@@ -214,15 +243,16 @@ function getCookie(name)
     }).on('filebatchselected',function(event,files){
         $(this).fileinput('upload');
     }).on('fileuploaded',function (event,data) {
+        console.log(event.delegateTarget.name);
         console.log(data.response);
-        that.imglist.push(data.response)
+        that.imglist[event.delegateTarget.id] = data.response
     });
         },
         data:{
             njsr: '',
             address: '',
             yjsr: '',
-            zgxl: '',
+            zgxl: '小学',
             hyzk: '未婚',
             jkms:'',
             sex:'男',
@@ -230,15 +260,19 @@ function getCookie(name)
             jkqx: '',
             hkfs: '',
             dyxx: '',
-            imglist:[]
+            imglist:{
+            }
 
         },
         methods:{
             submit(){
-                if(this.imglist.length < 2){
-                    alert("请上传证件照");
-                    return false;
-                }
+                var imglist = ['fcz','tdz','xsz','sfzz','sfzf','hkb','jsz'];
+                imglist.forEach(element => {
+                   if (this.imglist[element]  == undefined){
+                       alert('请完善证书信息');
+                        return false;
+                   }
+                });
                 $.post("/apply/"+'0', this.$data,
                     function (data, textStatus, jqXHR) {
                         console.log(data);
