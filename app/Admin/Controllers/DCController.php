@@ -74,7 +74,7 @@ class DCController extends Controller
         return Admin::grid(DC::class, function (Grid $grid) {
             $grid->model()->orderBy('updated_at','desc');
             $grid->disableCreateButton();
-            $grid->disableRowSelector();
+           // $grid->disableRowSelector();
             $grid->filter(function($filter){
                 $filter->equal('status','状态')->select(['1'=>'通过','0'=>'未审核','-1'=>'未通过']);
             });
@@ -94,7 +94,11 @@ class DCController extends Controller
             $grid->column('jkms','描述');
            
             $grid->updated_at('最后更新');
-             $grid->column('status','审核')->editable('select', [1 => '审核通过', -1 => '审核失败', 0 => '未审核']);
+            $states = [
+                'on'  => ['value' => 1, 'text' => '打开', 'color' => 'primary'],
+                'off' => ['value' => 2, 'text' => '关闭', 'color' => 'default'],
+            ];
+             $grid->status('审核')->editable('select', [1 => '审核通过', -1 => '审核失败', 0 => '未审核']);
         });
     }
 
@@ -114,14 +118,13 @@ class DCController extends Controller
             $form->display('uid','VIP')->with(function($val){
                 return User::find($val)->vip == 1 ? '是': '否';
             });
-            $form->display('imglist','证件')->with(function($vals){
-                $imglist = json_decode($vals);
-                $imglist = array_map(function($val){
-                    return "<a target='_blank' href='{$val}' ><img src='{$val}'  width='60px' style='margin-right:10px;'/></a>";
-                },$imglist);
-                return implode('',$imglist);
-            });
-            
+            $form->image('fcz','房产证')->uniqueName();
+            $form->image('xsz','行驶证')->uniqueName();
+            $form->image('tdz','土地证')->uniqueName();
+            $form->image('sfzz','身份证正面')->uniqueName();
+            $form->image('sfzf','身份证反面')->uniqueName();
+            $form->image('hkb','户口本')->uniqueName();
+             $form->image('jsz','驾驶证')->uniqueName();
             $form->text('ll','借款利率');
             $form->display('jkje','借款金额');
             $form->display('jkqx','借款期限');
@@ -133,8 +136,7 @@ class DCController extends Controller
             $form->display('hyzz','婚姻状况');
             $form->display('zgxl','最高学历');
             $form->display('address','居住地址');
-            $form->switch('status','状态');
-
+            $form->select('status','状态')->options(['1'=>'通过','0'=>'未审核','-1'=>'未通过']);
             $form->display('updated_at', '申请时间');
         });
     }

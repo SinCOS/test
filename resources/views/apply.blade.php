@@ -245,7 +245,7 @@ function getCookie(name)
     }).on('fileuploaded',function (event,data) {
         console.log(event.delegateTarget.name);
         console.log(data.response);
-        that.imglist[event.delegateTarget.id] = data.response
+        that.$data[event.delegateTarget.id] = data.response
     });
         },
         data:{
@@ -258,21 +258,29 @@ function getCookie(name)
             sex:'男',
             jkje: '',
             jkqx: '',
-            hkfs: '',
-            dyxx: '',
-            imglist:{
-            }
+            hkfs: '按月付息，到期还本金',
+            dyxx: '信用借款',
+            fcz:'',
+            tdz:'',
+            xsz:'',
+            sfzz:'',
+            sfzf:'',
+            hkb:'',
+            jsz:'',
+            
 
         },
         methods:{
             submit(){
                 var imglist = ['fcz','tdz','xsz','sfzz','sfzf','hkb','jsz'];
-                imglist.forEach(element => {
-                   if (this.imglist[element]  == undefined){
-                       alert('请完善证书信息');
+                for (let index = 0; index < imglist.length; index++) {
+                    const element = imglist[index];
+                    if(this.$data[element] == ''){
+                        alert('请完善证书信息');
                         return false;
-                   }
-                });
+                    }
+                }
+                
                 $.post("/apply/"+'0', this.$data,
                     function (data, textStatus, jqXHR) {
                         console.log(data);

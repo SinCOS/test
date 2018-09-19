@@ -53,7 +53,13 @@ class HomeController extends Controller
         'jkqx' => 'required',
         'hkfs' => 'required',
         'dyxx'=> 'required',
-        'imglist' => 'required'
+        'fcz'=>'required',
+           'tdz'=>'required',
+            'xsz'=>'required',
+           'sfzz'=>'required',
+            'sfzf'=>'required',
+            'hkb'=>'required',
+            'jsz'=>'required',
         ]);
         $data = $request->all();
     
@@ -71,7 +77,13 @@ class HomeController extends Controller
                 'jkje' => $data['jkje'],
                 'hkfs' => $data['hkfs'],
                 'dyxx' => $data['dyxx'],
-                'imglist' => json_encode($data['imglist']),
+                'fcz' => $data['fcz'],
+                'tdz' => $data['tdz'],
+                'xsz' => $data['xsz'],
+                'sfzz' => $data['sfzz'],
+                'sfzf' => $data['sfzf'],
+                'hkb' => $data['hkb'],
+                'jsz' => $data['jsz'],
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ]);
@@ -94,7 +106,7 @@ class HomeController extends Controller
                 $extension = $file->guessExtension();
                 $newName = str_random(18).".".$extension;
                 $file->move(base_path().'/public/uploads/images/',$newName);
-                $idCardFrontImg = '/uploads/images/'.$newName;
+                $idCardFrontImg = '/images/'.$newName;
                 return json_encode($idCardFrontImg);
             }else{
                 $idCardFrontImg = '';
