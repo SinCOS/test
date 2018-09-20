@@ -13,7 +13,7 @@
 
 
 Auth::routes();
-
+Route::get('/test','HomeController@test')->name('testpay');
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/detail/{id}','HomeController@detail')->name('detail');
 Route::get('/home','HomeController@home')->name("userCenter");

@@ -43,7 +43,7 @@ class HomeController extends Controller
     public function test(){
         $tempOrderId = Pay::getMillisecond();
         Pay::init();
-        $result =  Pay::pushOrder($100 * 100,'alipay',$tempOrderId,'6666',"支付给元",null);
+        $result =  Pay::pushOrder(100 * 100,'aliPay',$tempOrderId,'6666',"支付给元",null);
         var_dump($result);
     }
     public function apply_store(Request $request,$id){
