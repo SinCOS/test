@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Banner;
 use App\User;
 use App\DC;
-use App\Library\Pay;
 class HomeController extends Controller
 {
     /**
@@ -18,7 +17,11 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
-
+    public function test(){
+        if(isset($_SESSION['openid'])){
+            return 'ok';
+        }
+    }
     /**
      * Show the application dashboard.
      *
@@ -39,12 +42,6 @@ class HomeController extends Controller
     }
     public function apply(){
         return view('apply');
-    }
-    public function test(){
-        $tempOrderId = Pay::getMillisecond();
-        Pay::init();
-        $result =  Pay::pushOrder(100 * 100,'aliPay',$tempOrderId,'6666',"支付给元",null);
-        var_dump($result);
     }
     public function apply_store(Request $request,$id){
 
