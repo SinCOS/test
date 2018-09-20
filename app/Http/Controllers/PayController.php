@@ -9,12 +9,12 @@ use EasyWeChat\Factory;
 class PayController extends Controller
 {
     public function pay(){
-        $user = session('wechat.oauth_user'); // 拿到授权用户资料
+        $user = session('wechat.oauth_user.default'); // 拿到授权用户资料
         $order = [
             'out_trade_no' => time(),
             'total_fee' => 1,
             'body' => '测试商品',
-            'openid' => $user->default->id
+            'openid' => $user->id
         ];
         $result = Pay::wechat()->mp($order);
         return $result;
