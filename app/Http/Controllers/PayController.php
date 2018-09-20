@@ -8,20 +8,15 @@ use EasyWeChat\Factory;
 
 class PayController extends Controller
 {
-    public function pay($openid){
-        $config = [
-            'oauth' => [
-                'scopes' => ['snsapi_userinfo'],
-                'callback' => '/oauth_callback'
-            ]
-            ];
+    public function pay(){
+        $user = session('wechat.oauth_user'); // 拿到授权用户资料
         $order = [
             'out_trade_no' => time(),
             'total_fee' => 1,
             'body' => '测试商品',
-            //'openid' => $openid
+            'openid' => $user->default->id
         ];
-        $result = Pay::wechat()->wap($order);
+        $result = Pay::wechat()->mp($order);
         return $result;
     }
     public function notify(){

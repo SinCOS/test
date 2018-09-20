@@ -21,9 +21,5 @@ Route::get('/apply','HomeController@apply')->name("apply");
 Route::post("/apply/{id}",'HomeController@apply_store')->name('applystore');
 Route::post('/uploadPic','HomeController@uploadimg')->name("uploadpic");
 Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
-    Route::get('/user', function () {
-        $user = session('wechat.oauth_user'); // 拿到授权用户资料
-
-        dd($user);
-    });
+    Route::get('/pay/weixin', 'PayController@pay')->name('JSAPI');
 });
