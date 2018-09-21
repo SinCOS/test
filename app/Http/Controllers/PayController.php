@@ -17,17 +17,17 @@ class PayController extends Controller
         //     'openid' => $user->id
         // ];
         // $result = Pay::wechat()->mp($order);
-        $app = Factory::payment();
+        $app = EasyWeChat::payment();
         $result = $app->order->unify([
             'body' => '腾讯充值中心-QQ会员充值',
             'out_trade_no' => time(),
-            'total_fee' => 88,
+            'total_fee' =>1,
             'trade_type' => 'JSAPI',
             'openid' => $user->id,
          ]);
-        //  $jssdk = $app->jssdk();
-        //  $json = $jssdk->
-        return view('pay',['result' => $result]);
+        $jssdk = $app->jssdk;
+        $json = $jssdk->bridgeConfig($result['prepay_id']);
+        return view('pay',['result' => $json]);
     }
     public function notify(){
         $pay = Pay::wechat();
