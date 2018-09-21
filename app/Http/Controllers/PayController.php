@@ -17,7 +17,7 @@ class PayController extends Controller
         //     'openid' => $user->id
         // ];
         // $result = Pay::wechat()->mp($order);
-        $app = EasyWeChat::payment();
+        $app = \EasyWeChat::payment();
         $result = $app->order->unify([
             'body' => '腾讯充值中心-QQ会员充值',
             'out_trade_no' => time(),
