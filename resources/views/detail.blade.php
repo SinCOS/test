@@ -358,8 +358,8 @@
 
 
                     <div class="provGroup">
-                        <a href="/uploads/{{$detail->sfzf}">
-                            <img src="/uploads/{{$detail->sfzf}" alt="">
+                        <a href="/uploads/{{$detail->sfzf}}">
+                            <img src="/uploads/{{$detail->sfzf}}" alt="">
                         </a>
                         <p>身份证反面</p>
                     </div>
@@ -421,8 +421,8 @@
 
 
                     <div class="provGroup">
-                        <a href="/uploads/{{$detail->jsz}">
-                            <img src="/uploads/{{$detail->jsz}" alt="">
+                        <a href="/uploads/{{$detail->jsz}}">
+                            <img src="/uploads/{{$detail->jsz}}" alt="">
                         </a>
                         <p>驾驶证</p>
                     </div>
@@ -430,8 +430,8 @@
 
 
                     <div class="provGroup">
-                        <a href="/uploads/{{$detail->xsz}">
-                            <img src="/uploads/{{$detail->xsz}" alt="">
+                        <a href="/uploads/{{$detail->xsz}}">
+                            <img src="/uploads/{{$detail->xsz}}" alt="">
                         </a>
                         <p>行驶证</p>
                     </div>
