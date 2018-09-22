@@ -20,6 +20,6 @@ Route::get('/home','HomeController@home')->name("userCenter");
 Route::get('/apply','HomeController@apply')->name("apply");
 Route::post("/apply/{id}",'HomeController@apply_store')->name('applystore');
 Route::post('/uploadPic','HomeController@uploadimg')->name("uploadpic");
-Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
+Route::group(['middleware' => ['auth','web', 'wechat.oauth']], function () {
     Route::get('/pay/weixin', 'PayController@pay')->name('JSAPI');
 });

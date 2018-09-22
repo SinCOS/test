@@ -7,9 +7,7 @@ use Ramsey\Uuid\Uuid;
 
 class Order extends Model
 {
-    protected $table = [
-        'vorder'
-    ];
+    protected $table =  'vorder';
     protected $fillable = [
         'no',
         'address',
@@ -22,6 +20,9 @@ class Order extends Model
     protected $dates = [
         'paid_at'
     ];
+    public function getUpdatedAtColumn() {
+        return null;
+    }
     protected static function boot()
     {
         parent::boot();
