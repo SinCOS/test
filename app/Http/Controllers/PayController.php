@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Pay;
 use EasyWeChat\Factory;
+use Carbon\Carbon;
 use App\Order;
 class PayController extends Controller
 {
@@ -34,12 +35,21 @@ class PayController extends Controller
         $json = $jssdk->bridgeConfig($result['prepay_id']);
         return view('pay',['result' => $json]);
     }
+    public function queryOrder($orderNo){
+        $app = \EasyWeChat::payment();
+        return $app->order->queryByOutTradeNumber($orderNo);
+    }
     public function notify(){
         $app = \EasyWeChat::payment();
         $response = $app->handlePaidNotify(function ($message, $fail) {
                 $order = Order::where('no','=',$message['']);
-                return true;
-                // 或者错误消息
+                if(!$order || $order->paid_at ) {return true;}
+                $order->update([
+                    'paid_at' => Carbon::now(),
+                    'payment_no' => $message['transaction_id'],
+                    'status' => 1
+                ]);
+                $order->user->update(['vip' => 1]);
                 return   $fail('Order not exists.');
         });
         return $response;
