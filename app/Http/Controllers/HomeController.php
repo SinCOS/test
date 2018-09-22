@@ -21,6 +21,7 @@ class HomeController extends Controller
         if(isset($_SESSION['openid'])){
             return 'ok';
         }
+        
     }
     /**
      * Show the application dashboard.
@@ -95,8 +96,8 @@ class HomeController extends Controller
     }
     public function home(){
         $user = \Auth::user();
-     
-        return view('usercenter',['user' => $user]);
+        $item = DC::where('uid','=',$user->id)->first();
+        return view('usercenter',['user' => $user,'isStatus' => $item->status]);
     }
     public function uploadimg(Request $request)
     {

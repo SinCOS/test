@@ -42,11 +42,11 @@
     <!--au_txt-->
     <div class="au_txt">
         <ul>
-
-            <li>
-                <span>开通VIP，享受平台最高服务。点击开通VIP特权！</span><a href="">立即开通</a>
-            </li>
-
+            @if ($user->vip != 1 && $isStatus == 1)
+                <li>
+                    <span>开通VIP，享受平台最高服务。点击开通VIP特权！</span><a href="/pay/vip">立即开通</a>
+                </li>
+            @endif
             <li>
                 <span>点击进入信息编辑页面补充个人资料，所填信息务必确保真实性，以便审核员复核个人信息。</span><a href="{{route('apply')}}">我要借款</a>
             </li>
@@ -58,7 +58,7 @@
     <div class="au_inlist">
         <ul>
             <li><a href="javascript:;"><img src="/app/images/my_icon01.png">账户余额<span>{{$user->money}}元</span></a></li>
-            <li><a href=""><img src="/app/images/home_myClick.png">VIP特权<span>点击查看VIP特权</span></a></li>
+            <li style="display:none;"><a href=""><img src="/app/images/home_myClick.png">VIP特权<span>点击查看VIP特权</span></a></li>
         </ul>
     </div>
 

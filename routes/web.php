@@ -23,5 +23,5 @@ Route::post('/uploadPic','HomeController@uploadimg')->name("uploadpic");
 Route::get('/queryOrder/{orderNo}','PayController@queryOrder')->name('queryOrder');
 Route::post('pay/notify','PayController@notify')->name('notify');
 Route::group(['middleware' => ['auth','web', 'wechat.oauth']], function () {
-    Route::get('/pay/weixin', 'PayController@pay')->name('JSAPI');
+    Route::get('/pay/vip', 'PayController@pay')->name('JSAPI');
 });
