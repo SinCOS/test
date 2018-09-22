@@ -358,8 +358,8 @@
 
 
                     <div class="provGroup">
-                        <a href="/app/picture/demo.jpg">
-                            <img src="/app/picture/demo.jpg" alt="">
+                        <a href="/uploads/{{$detail->sfzf}">
+                            <img src="/uploads/{{$detail->sfzf}" alt="">
                         </a>
                         <p>身份证反面</p>
                     </div>
@@ -367,8 +367,8 @@
 
 
                     <div class="provGroup">
-                        <a href="/app/picture/demo.jpg">
-                            <img src="/app/picture/demo.jpg" alt="">
+                        <a href="/uploads/{{$detail->sfzz}">
+                            <img src="/uploads/{{$detail->sfzz}}" alt="">
                         </a>
                         <p>身份证正面</p>
                     </div>
@@ -376,8 +376,8 @@
 
 
                     <div class="provGroup">
-                        <a href="/app/picture/demo.jpg">
-                            <img src="/app/picture/demo.jpg" alt="">
+                        <a href="/uploads/{{$detail->fcz}}">
+                            <img src="/uploads/{{$detail->fcz}}" alt="">
                         </a>
                         <p>房本</p>
                     </div>
@@ -385,8 +385,8 @@
 
 
                     <div class="provGroup">
-                        <a href="/app/picture/demo.jpg">
-                            <img src="/app/picture/demo.jpg" alt="">
+                        <a href="/uploads/{{$detail->hkb}}">
+                            <img src="/uploads/{{$detail->hkb}}" alt="">
                         </a>
                         <p>户口本</p>
                     </div>
@@ -421,19 +421,19 @@
 
 
                     <div class="provGroup">
-                        <a href="/app/picture/demo.jpg">
-                            <img src="/app/picture/demo.jpg" alt="">
+                        <a href="/uploads/{{$detail->jsz}">
+                            <img src="/uploads/{{$detail->jsz}" alt="">
                         </a>
-                        <p>室外2</p>
+                        <p>驾驶证</p>
                     </div>
 
 
 
                     <div class="provGroup">
-                        <a href="/app/picture/demo.jpg">
-                            <img src="/app/picture/demo.jpg" alt="">
+                        <a href="/uploads/{{$detail->xsz}">
+                            <img src="/uploads/{{$detail->xsz}" alt="">
                         </a>
-                        <p>室外1</p>
+                        <p>行驶证</p>
                     </div>
 
 
