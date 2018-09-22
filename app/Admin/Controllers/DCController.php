@@ -88,7 +88,7 @@ class DCController extends Controller
             $grid->column('uid','用户名')->display(function($userId){
                 return User::find($userId)->name ;
             });
-            
+            $grid->column('dyxx','抵押信息');
             $grid->column('jkje','借款金额');
              $grid->column('jkqx','借款期限(月)');
             $grid->column('jkms','描述');
