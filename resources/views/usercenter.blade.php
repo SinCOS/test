@@ -20,7 +20,7 @@
     <div class="wp_top_index">
         <a href="/" class="wp_fl">首页</a>
         <span class="s1">个人中心</span>
-        <a href="javascript:;">记录</a>
+        {{-- <a href="javascript:;">记录</a> --}}
 
     </div>
     <div class="au_top">

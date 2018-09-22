@@ -15,6 +15,7 @@ class PayController extends Controller
         if($authUser->vip == 1){
             return redirect('userCenter');
         }
+
         // $order = [
         //     'out_trade_no' => time(),
         //     'total_fee' => 1,
@@ -24,7 +25,7 @@ class PayController extends Controller
         // $result = Pay::wechat()->mp($order);
         $order = Order::create([
             'uid' => $authUser->id,
-            'total_fee' => 0.01,
+            'total_fee' => env('VIPMONEY',3000),
             'status' => 0,
         ]);
         $app = \EasyWeChat::payment();
