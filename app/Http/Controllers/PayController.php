@@ -52,7 +52,7 @@ class PayController extends Controller
               
                 if($message['return_code'] == 'SUCCESS'){
                     $result = $app->order->queryByOutTradeNumber($order->no);
-                    if($reuslt['result_code'] == $message['result_code'] && $message['result_code'] == 'SUCCESS'){
+                    if($result['result_code'] == $message['result_code'] && $message['result_code'] == 'SUCCESS'){
 
                         
                     \DB::beginTransaction();
@@ -68,7 +68,7 @@ class PayController extends Controller
                         \DB::commit();
                     }catch(\Illuminate\Database\QueryException $ex){
                             \DB::rollback();
-                            \Log::debug($ex);
+                            $app['logger']->debug($ex->getMessage());
                             return $fail('fail');
                     }
                         return true;
