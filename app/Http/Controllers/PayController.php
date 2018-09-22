@@ -38,7 +38,7 @@ class PayController extends Controller
     public function queryOrder($orderNo){
         $app = \EasyWeChat::payment();
         $order = Order::where('no','=',$orderNo);
-        return $order->user()->toArray();
+        return $order->user()->first()->toArray();
         return $app->order->queryByOutTradeNumber($orderNo);
     }
     public function notify(){
