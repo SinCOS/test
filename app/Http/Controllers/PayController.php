@@ -44,21 +44,22 @@ class PayController extends Controller
         return $app->order->queryByOutTradeNumber($orderNo);
     }
     public function notify(){
-        file_put_contents(storage_path('logs/pay.log'),file_get_contents('php://input'));
+        //file_put_contents(storage_path('logs/pay.log'),file_get_contents('php://input'));
         $app = \EasyWeChat::payment();
         $response = $app->handlePaidNotify(function ($message, $fail)use($app) {
-                $order = Order::where('no','=',$message['out_trade_no']);
+                $order = Order::where('no','=',$message['out_trade_no'])->first();
                  if(!$order || $order->paid_at || $order->status == 1) {return true;}
               
                 if($message['return_code'] == 'SUCCESS'){
                     $result = $app->order->queryByOutTradeNumber($order->no);
-                    if($reuslt->result_code == $message['result_code'] && $message['result_code'] == 'SUCCESS'){
+                    if($reuslt['result_code'] == $message['result_code'] && $message['result_code'] == 'SUCCESS'){
 
                         
                     \DB::beginTransaction();
                     try{
+                        $order->timestamps = false;// disable updated_at
                         $order->update([
-                                'paid_at' => Carbon::now(),
+                                'paid_at' =>\Carbon\Carbon::now(),
                                 'payment_no' => $message['transaction_id'],
                                 'status' => 1
                             ]);
@@ -67,6 +68,7 @@ class PayController extends Controller
                         \DB::commit();
                     }catch(\Illuminate\Database\QueryException $ex){
                             \DB::rollback();
+                            \Log::debug($ex);
                             return $fail('fail');
                     }
                         return true;
