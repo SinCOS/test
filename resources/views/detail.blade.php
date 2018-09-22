@@ -367,7 +367,7 @@
 
 
                     <div class="provGroup">
-                        <a href="/uploads/{{$detail->sfzz}">
+                        <a href="/uploads/{{$detail->sfzz}}">
                             <img src="/uploads/{{$detail->sfzz}}" alt="">
                         </a>
                         <p>身份证正面</p>
