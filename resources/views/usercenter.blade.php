@@ -42,7 +42,7 @@
     <!--au_txt-->
     <div class="au_txt">
         <ul>
-            @if ($vip)
+            @if (!$vip)
                 <li>
                     <span>开通VIP，享受平台最高服务。点击开通VIP特权！</span><a href="/pay/vip">立即开通</a>
                 </li>
