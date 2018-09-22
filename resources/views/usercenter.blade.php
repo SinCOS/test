@@ -42,14 +42,17 @@
     <!--au_txt-->
     <div class="au_txt">
         <ul>
-            @if ($user->vip != 1 && $isStatus == 1)
+            @if ($user->vip != 1 && isset($isStatus) && $isStatus->status == 1)
                 <li>
                     <span>开通VIP，享受平台最高服务。点击开通VIP特权！</span><a href="/pay/vip">立即开通</a>
                 </li>
             @endif
-            <li>
-                <span>点击进入信息编辑页面补充个人资料，所填信息务必确保真实性，以便审核员复核个人信息。</span><a href="{{route('apply')}}">我要借款</a>
-            </li>
+            @if (!$isStatus)
+                 <li>
+                         <span>点击进入信息编辑页面补充个人资料，所填信息务必确保真实性，以便审核员复核个人信息。</span><a href="{{route('apply')}}">我要借款</a>
+                </li>
+            @endif
+           
 
         </ul>
     </div>
