@@ -136,7 +136,7 @@ class DCController extends Controller
             $form->display('jkms','借款描述');
             $form->display('yjsr','月均收入');
             $form->display('njsr','年均收入');
-            $form->display('hyzz','婚姻状况');
+            $form->display('hyzk','婚姻状况');
             $form->display('zgxl','最高学历');
             $form->display('address','居住地址');
             $form->select('status','状态')->options(['1'=>'通过','0'=>'未审核','-1'=>'未通过']);
