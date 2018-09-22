@@ -69,7 +69,7 @@ class PayController extends Controller
                                 'status' => 1
                             ]);
                         $user = $order->user();
-                        $user->update(['vip' => 1]);
+                        $user->update(['vip' =>\Carbon\Carbon::parse("+1 year")]);
                         \DB::commit();
                     }catch(\Illuminate\Database\QueryException $ex){
                             \DB::rollback();
