@@ -118,6 +118,9 @@ class DCController extends Controller
             $form->display('uid','VIP')->with(function($val){
                 return User::find($val)->vip == 1 ? '是': '否';
             });
+            $form->display('uid','手机号码')->with(function($val){
+                return User::find($val)->mobile ;
+            });
             $form->image('fcz','房产证')->uniqueName();
             $form->image('xsz','行驶证')->uniqueName();
             $form->image('tdz','土地证')->uniqueName();

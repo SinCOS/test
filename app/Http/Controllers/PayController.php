@@ -11,6 +11,10 @@ class PayController extends Controller
 {
     public function pay(){
         $user = session('wechat.oauth_user.default'); // 拿到授权用户资料
+        $authUser = \Auth::user();
+        if($authUser->vip == 1){
+            return redirect('userCenter');
+        }
         // $order = [
         //     'out_trade_no' => time(),
         //     'total_fee' => 1,
@@ -19,7 +23,7 @@ class PayController extends Controller
         // ];
         // $result = Pay::wechat()->mp($order);
         $order = Order::create([
-            'uid' => \Auth::user()->id,
+            'uid' => $authUser->id,
             'total_fee' => 0.01,
             'status' => 0,
         ]);
