@@ -26,7 +26,7 @@ class PayController extends Controller
         $result = $app->order->unify([
             'body' => 'VIP会员费',
             'out_trade_no' => $order->no,
-            'total_fee' =>1,
+            'total_fee' =>$order->total_fee * 100,
             'trade_type' => 'JSAPI',
             'openid' => $user->id,
          ]);
@@ -37,7 +37,7 @@ class PayController extends Controller
     public function notify(){
         $app = \EasyWeChat::payment();
         $response = $app->handlePaidNotify(function ($message, $fail) {
-                $order = Order::where('orderId','=',$message['']);
+                $order = Order::where('no','=',$message['']);
                 return true;
                 // 或者错误消息
                 return   $fail('Order not exists.');
