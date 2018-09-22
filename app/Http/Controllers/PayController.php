@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Pay;
 use EasyWeChat\Factory;
-
+use App\Order;
 class PayController extends Controller
 {
     public function pay(){
@@ -17,9 +17,15 @@ class PayController extends Controller
         //     'openid' => $user->id
         // ];
         // $result = Pay::wechat()->mp($order);
+        Order::create([
+            'uid' => \Auth::user()->id,
+            'total_fee' => 3000* 100,
+            'status' => 0,
+            'no' => ''
+        ]);
         $app = \EasyWeChat::payment();
         $result = $app->order->unify([
-            'body' => '腾讯充值中心-QQ会员充值',
+            'body' => 'VIP会员费',
             'out_trade_no' => time(),
             'total_fee' =>1,
             'trade_type' => 'JSAPI',
@@ -30,13 +36,13 @@ class PayController extends Controller
         return view('pay',['result' => $json]);
     }
     public function notify(){
-        $pay = Pay::wechat();
-        try{
-            $data = $pay->verify();
-            
-        }catch(\Exception $e){
-
-        }
-        return $pay->success();
+        $app = \EasyWeChat::payment();
+        $response = $app->handlePaidNotify(function ($message, $fail) {
+                $order = Order::where('orderId','=',$message['']);
+                return true;
+                // 或者错误消息
+                return   $fail('Order not exists.');
+        });
+        return $response;
     }
 }
