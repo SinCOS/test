@@ -37,19 +37,30 @@ class PayController extends Controller
     }
     public function queryOrder($orderNo){
         $app = \EasyWeChat::payment();
+        $order = Order::where('no','=',$orderNo);
+        return $order->user()->toArray();
         return $app->order->queryByOutTradeNumber($orderNo);
     }
     public function notify(){
         $app = \EasyWeChat::payment();
-        $response = $app->handlePaidNotify(function ($message, $fail) {
+        $response = $app->handlePaidNotify(function ($message, $fail)use($app) {
                 $order = Order::where('no','=',$message['']);
-                if(!$order || $order->paid_at ) {return true;}
-                $order->update([
-                    'paid_at' => Carbon::now(),
-                    'payment_no' => $message['transaction_id'],
-                    'status' => 1
-                ]);
-                $order->user->update(['vip' => 1]);
+                 if(!$order || $order->paid_at || $order->status == 1) {return true;}
+              
+                if($message['return_code'] == 'SUCCESS'){
+                    $result = $app->order->queryByOutTradeNumber($order->no);
+                    if($reuslt->result_code == $message['result_code'] && $message['result_code'] == 'SUCCESS'){
+                        $order->update([
+                            'paid_at' => Carbon::now(),
+                            'payment_no' => $message['transaction_id'],
+                            'status' => 1
+                        ]);
+                        $order->user()->update(['vip' => 1]);
+                    }
+                   
+                    
+                }
+                
                 return   $fail('Order not exists.');
         });
         return $response;

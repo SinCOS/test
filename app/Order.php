@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Ramsey\Uuid\Uuid;
-
+use App\User;
 class Order extends Model
 {
     protected $table =  'vorder';
@@ -40,6 +40,9 @@ class Order extends Model
                 }
             }
         });
+    }
+    public function user(){
+        return $this->belongsTo(User::class);
     }
     public static function findAvailableNo()
     {
