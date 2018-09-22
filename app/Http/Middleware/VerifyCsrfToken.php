@@ -14,7 +14,8 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         '/uploadPic',
         '/apply/*',
-        'wechat'
+        'wechat',
+        '/pay/*'
         //
     ];
 }
