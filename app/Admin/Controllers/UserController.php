@@ -78,7 +78,7 @@ class UserController extends Controller
             $grid->column('mobile','手机');
             $grid->column('money','余额');
             $grid->column('vip','是否会员')->display(function($vip){
-                return $vip == 1 ? '是' :  '否';
+                return $vip >\Carbon\Carbon::now()  ? "<span>是</span><br><span>{$vip}</span>" :  '否';
             });
             $grid->created_at('注册时间');
             //$grid->updated_at();

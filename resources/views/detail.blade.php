@@ -392,30 +392,11 @@
                     </div>
 
 
-
                     <div class="provGroup">
-                        <a href="/app/picture/demo.jpg">
-                            <img src="/app/picture/demo.jpg" alt="">
+                        <a href="/uploads/{{$detail->tdz}}">
+                            <img src="/uploads/{{$detail->tdz}}" alt="">
                         </a>
-                        <p>借款抵押合同3</p>
-                    </div>
-
-
-
-                    <div class="provGroup">
-                        <a href="/app/picture/demo.jpg">
-                            <img src="/app/picture/demo.jpg" alt="">
-                        </a>
-                        <p>借款抵押合同1</p>
-                    </div>
-
-
-
-                    <div class="provGroup">
-                        <a href="/app/picture/demo.jpg">
-                            <img src="/app/picture/demo.jpg" alt="">
-                        </a>
-                        <p>借款抵押合同2</p>
+                        <p>土地证</p>
                     </div>
 
 
