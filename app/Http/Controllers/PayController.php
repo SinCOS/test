@@ -17,16 +17,15 @@ class PayController extends Controller
         //     'openid' => $user->id
         // ];
         // $result = Pay::wechat()->mp($order);
-        Order::create([
+        $order = Order::create([
             'uid' => \Auth::user()->id,
-            'total_fee' => 3000* 100,
+            'total_fee' => 3000,
             'status' => 0,
-            'no' => ''
         ]);
         $app = \EasyWeChat::payment();
         $result = $app->order->unify([
             'body' => 'VIP会员费',
-            'out_trade_no' => time(),
+            'out_trade_no' => $order->no,
             'total_fee' =>1,
             'trade_type' => 'JSAPI',
             'openid' => $user->id,

@@ -15,13 +15,15 @@ class Order extends Model
         'uid',
         'paid_at',
         'payment_no',
-        'status'
+        'status',
+        'created_at',
+
     ];
     protected $dates = [
         'paid_at'
     ];
-    public function getUpdatedAtColumn() {
-        return null;
+    public function setUpdatedAtAttribute($value) {
+        
     }
     protected static function boot()
     {
