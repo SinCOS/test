@@ -20,7 +20,7 @@ class PayController extends Controller
         // $result = Pay::wechat()->mp($order);
         $order = Order::create([
             'uid' => \Auth::user()->id,
-            'total_fee' => 3000,
+            'total_fee' => 0.01,
             'status' => 0,
         ]);
         $app = \EasyWeChat::payment();
@@ -46,18 +46,29 @@ class PayController extends Controller
     public function notify(){
         $app = \EasyWeChat::payment();
         $response = $app->handlePaidNotify(function ($message, $fail)use($app) {
-                $order = Order::where('no','=',$message['']);
+                $order = Order::where('no','=',$message['out_trade_no']);
                  if(!$order || $order->paid_at || $order->status == 1) {return true;}
               
                 if($message['return_code'] == 'SUCCESS'){
                     $result = $app->order->queryByOutTradeNumber($order->no);
                     if($reuslt->result_code == $message['result_code'] && $message['result_code'] == 'SUCCESS'){
+
+                        
+                    \DB::beginTransaction();
+                    try{
                         $order->update([
-                            'paid_at' => Carbon::now(),
-                            'payment_no' => $message['transaction_id'],
-                            'status' => 1
-                        ]);
-                        $order->user()->update(['vip' => 1]);
+                                'paid_at' => Carbon::now(),
+                                'payment_no' => $message['transaction_id'],
+                                'status' => 1
+                            ]);
+                        $user = $order->user();
+                        $user->update(['vip' => 1]);
+                        \DB::commit();
+                    }catch(\Illuminate\Database\QueryException $ex){
+                            \DB::rollback();
+                            return $fail('fail');
+                    }
+                        return true;
                     }
                    
                     
