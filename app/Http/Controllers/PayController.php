@@ -44,8 +44,8 @@ class PayController extends Controller
         return $app->order->queryByOutTradeNumber($orderNo);
     }
     public function notify(){
-        \Log::debug(file_get_contents('php://input'));
         $app = \EasyWeChat::payment();
+        $app['logger']->debug(file_get_contents('php://input'));
         $response = $app->handlePaidNotify(function ($message, $fail)use($app) {
                 $order = Order::where('no','=',$message['out_trade_no'])->first();
                  if(!$order || $order->paid_at || $order->status == 1) {return true;}
