@@ -34,7 +34,7 @@
             <p></p>
             <ul>
                 <li><a class="a1" href="javascript:void(0)#"><img src="{{$user->avatar}}"></a></li>
-                <li><span class="s1">{{$user->name}}<img src="/app/images/k_01.png"></span><span>当前等级:{{ $user->vip == 1 ? '超级会员' : '普通会员' }}</span></li>
+                <li><span class="s1">{{$user->name}}<img src="/app/images/k_01.png"></span><span>当前等级:{{ $vip == true ? '超级会员' : '普通会员' }}</span></li>
             </ul>
         </div>
     </div>

@@ -97,7 +97,7 @@ class HomeController extends Controller
     public function home(){
         $user = \Auth::user();
         $item = DC::where('uid','=',$user->id)->first();
-        return view('usercenter',['user' => $user,'isStatus' => $item,'vip' => $user->vip > \Carbon\Carbon::now()]);
+        return view('usercenter',['user' => $user,'isStatus' => $item,'vip' => ($user->vip > \Carbon\Carbon::now())]);
     }
     public function uploadimg(Request $request)
     {
