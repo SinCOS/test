@@ -65,7 +65,7 @@
                 <div class="pleft">
                     <em>奖1%</em>
                     <em class="dxb">VIP</em>
-                    <h2><big>{{$item->ll}}</big>% <i>+1</i></h2>
+                    <h2><big>{{$item->ll}}</big>% <i style="display: none;">+1</i></h2>
                     <p>借款期限：{{$item->jkqx or 0}}个月</p>
                 </div>
                 <div class="pright">

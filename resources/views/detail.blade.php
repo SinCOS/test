@@ -264,7 +264,7 @@
         <div class="data clearfix">
 
                 <span>利率：<em
-                        class="red"><big>{{$detail->ll}}+1</big>%</em></span>
+                        class="red"><big>{{$detail->ll}}</big>%</em></span>
             <span>借款期限：<em>{{$detail->jkqx}}个月</em></span>
             <span>借款金额：<em>{{$detail->jkje}}元</em></span>
             <span>起投金额：<em>100元</em></span>
@@ -730,22 +730,8 @@
     }
 
     function yqsyCal(money) {
-        if (money != null && money != undefined && money != '') {
-            $.ajax({
-                url: "/finance/getExpectProfit",
-                type: "post",
-                data: {"loanApplicationId": loanApplicationId, "amount": money},
-                async: false,
-                success: function (data) {
-                    if (data.indexOf(",") != -1) {
-                        var arr = data.split(",");
-                        $("#yqsy").html(fmoney(arr[0], 2) + "元+" + fmoney(arr[1], 2) + "元(奖励)");
-                    } else {
-                        $("#yqsy").html(fmoney(data, 2) + "元");
-                    }
-                }
-            });
-        }
+        var ll = {{$detail->ll}};
+        $('#yqsy').val(money * (1+ll/100));
     }
 
 

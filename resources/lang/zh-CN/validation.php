@@ -116,6 +116,10 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'mobile' => '手机号',
+        'password' => '密码',
+        'name' => '用户名'
+    ],
 
 ];

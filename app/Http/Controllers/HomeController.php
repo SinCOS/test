@@ -48,6 +48,9 @@ class HomeController extends Controller
     public function apply(){
         return view('apply');
     }
+    public function order(){
+        
+    }
     public function apply_store(Request $request,$id){
 
        $this->validate($request, [
