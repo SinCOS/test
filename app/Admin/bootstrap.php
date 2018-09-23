@@ -17,5 +17,7 @@
  * Admin::js('/packages/prettydocs/js/main.js');
  *
  */
-
+use App\Admin\Extensions\PHPEditor;
+use Encore\Admin\Form;
 Encore\Admin\Form::forget(['map', 'editor']);
+Form::extend('php', PHPEditor::class);

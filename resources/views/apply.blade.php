@@ -221,7 +221,7 @@ function getCookie(name)
     showUpload:false,
     language: 'zh',
     maxFileCount: 4,
-    maxFileSize:2000,
+    maxFileSize:3000,
     showRemove: false,
     dropZoneEnabled:false,
     showPreview: true,

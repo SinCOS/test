@@ -126,6 +126,7 @@ class DCController extends Controller
             $form->image('sfzz','身份证正面')->uniqueName();
             $form->image('sfzf','身份证反面')->uniqueName();
             $form->image('fcz','房产证')->uniqueName();
+            $form->editor('content','附加内容');
             //  $form->image('jsz','驾驶证')->uniqueName();
             $form->text('ll','借款利率');
             $form->display('jkje','借款金额');
