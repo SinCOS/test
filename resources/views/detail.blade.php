@@ -666,7 +666,7 @@
         }
 
         var mes = pub_money(jude)
-
+          yqsyCal($("#money").val());
         if (mes !== "") {
             $("#emInfo").html(mes);
         } else {
