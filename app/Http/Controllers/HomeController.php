@@ -29,7 +29,11 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
+        $user = \Auth::user();
+        if($user->status !=1){
+            return '请在管理员审核之后，再次进行登录!';
+        }
        $list =  Banner::orderBy('sort','asc')->get();
         $dclist=  DC::where('status',1)->orderBy('updated_at','desc')->get();
         return view('home',['banner'=>$list,'dc' => $dclist]);
@@ -96,9 +100,7 @@ class HomeController extends Controller
     }
     public function home(){
         $user = \Auth::user();
-        if($user->status !=1){
-            return '请在管理员审核之后，再次进行登录!';
-        }
+        
         $item = DC::where('uid','=',$user->id)->first();
         return view('usercenter',['user' => $user,'isStatus' => $item,'vip' => ($user->vip > \Carbon\Carbon::now())]);
     }
