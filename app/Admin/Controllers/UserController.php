@@ -80,7 +80,8 @@ class UserController extends Controller
             $grid->column('vip','是否会员')->display(function($vip){
                 return $vip >\Carbon\Carbon::now()  ? "<span>是</span><br><span>{$vip}</span>" :  '否';
             });
-            $grid->status('审核')->editable('select', [1 => '审核通过', -1 => '审核失败', 0 => '未审核']);
+            
+            $grid->status('审核');
             $grid->created_at('注册时间');
             //$grid->updated_at();
         });
@@ -100,6 +101,7 @@ class UserController extends Controller
             $form->password('password','密码');
             $form->email('mobile','手机');
             $form->display('money','余额');
+             $form->select('status','状态')->options(['1'=>'通过','0'=>'未审核','-1'=>'未通过']);
             $form->display('created_at', '注册时间');
             //$form->display('updated_at', 'Updated At');
             $form->disableReset();
