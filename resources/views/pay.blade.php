@@ -15,6 +15,10 @@ function onBridgeReady(){
       'getBrandWCPayRequest', {!!$result!!},
       function(res){
       if(res.err_msg == "get_brand_wcpay_request:ok" ){
+        window.location = '/home';
+      }else{
+        alert("支付取消");
+        window.location = '/home';
       }
    });
 }

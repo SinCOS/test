@@ -376,38 +376,15 @@
 
 
                     <div class="provGroup">
-                        <a href="/uploads/{{$detail->fcz}}">
-                            <img src="/uploads/{{$detail->fcz}}" alt="">
+                        <a href="/uploads/{{$detail->xybg}}">
+                            <img src="/uploads/{{$detail->xybg}}" alt="">
                         </a>
                         <p>房本</p>
                     </div>
 
 
 
-                    <div class="provGroup">
-                        <a href="/uploads/{{$detail->hkb}}">
-                            <img src="/uploads/{{$detail->hkb}}" alt="">
-                        </a>
-                        <p>户口本</p>
-                    </div>
-
-
-
-                    <div class="provGroup">
-                        <a href="/uploads/{{$detail->tdz}}">
-                            <img src="/uploads/{{$detail->tdz}}" alt="">
-                        </a>
-                        <p>土地证</p>
-                    </div>
-
-
-
-                    <div class="provGroup">
-                        <a href="/uploads/{{$detail->jsz}}">
-                            <img src="/uploads/{{$detail->jsz}}" alt="">
-                        </a>
-                        <p>驾驶证</p>
-                    </div>
+                   
 
 
 
@@ -416,24 +393,6 @@
                             <img src="/uploads/{{$detail->xsz}}" alt="">
                         </a>
                         <p>行驶证</p>
-                    </div>
-
-
-
-                    <div class="provGroup">
-                        <a href="/app/picture/demo.jpg">
-                            <img src="/app/picture/demo.jpg" alt="">
-                        </a>
-                        <p>室内2</p>
-                    </div>
-
-
-
-                    <div class="provGroup">
-                        <a href="/app/picture/demo.jpg">
-                            <img src="/app/picture/demo.jpg" alt="">
-                        </a>
-                        <p>室内1</p>
                     </div>
 
 
