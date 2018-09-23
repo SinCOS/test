@@ -99,7 +99,7 @@ class UserController extends Controller
             $form->display('id', 'ID');
             $form->text('name','用户名');
             $form->password('password','密码');
-            $form->email('mobile','手机');
+            $form->text('mobile','手机');
             $form->display('money','余额');
              $form->select('status','状态')->options(['1'=>'通过','0'=>'未审核','-1'=>'未通过']);
             $form->display('created_at', '注册时间');
