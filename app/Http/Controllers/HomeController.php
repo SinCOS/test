@@ -96,7 +96,7 @@ class HomeController extends Controller
     }
     public function home(){
         $user = \Auth::user();
-        if($user->status == 0){
+        if($user->status !=1){
             return '请在管理员审核之后，再次进行登录!';
         }
         $item = DC::where('uid','=',$user->id)->first();

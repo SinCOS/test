@@ -80,6 +80,7 @@ class UserController extends Controller
             $grid->column('vip','是否会员')->display(function($vip){
                 return $vip >\Carbon\Carbon::now()  ? "<span>是</span><br><span>{$vip}</span>" :  '否';
             });
+            $grid->status('审核')->editable('select', [1 => '审核通过', -1 => '审核失败', 0 => '未审核']);
             $grid->created_at('注册时间');
             //$grid->updated_at();
         });
