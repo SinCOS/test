@@ -41,7 +41,7 @@ class DCController extends Controller
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header('header');
+            $content->header('查看');
             $content->description('description');
         
             $content->body($this->form()->edit($id));
@@ -57,7 +57,7 @@ class DCController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
+            $content->header('添加');
             $content->description('description');
 
             $content->body($this->form());
