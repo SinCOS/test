@@ -134,7 +134,7 @@
                     </div>
                      <div class="form-group  ">
 
-                        <label for="avatar" class="col-xs-12 col-sm-4 col-md-3 col-lg-2 control-label">土地证</label>
+                        <label for="avatar" class="col-xs-12 col-sm-4 col-md-3 col-lg-2 control-label">信用报告</label>
 
                         <div class="col-sm-8 col-xs-12">
                             <input type="file" id='xybg' class="file" name="avatar"  />
