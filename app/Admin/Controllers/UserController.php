@@ -106,6 +106,9 @@ class UserController extends Controller
             //$form->display('updated_at', 'Updated At');
             $form->disableReset();
             $form->saving(function(Form $form){
+                if(!$form->password){
+                    unset($form->password);
+                }
                 if($form->password && $form->model()->password != $form->password){
                     $form->password = bcrypt($form->password);
                 }
