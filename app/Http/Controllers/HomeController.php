@@ -100,8 +100,7 @@ class HomeController extends Controller
     }
     public function home(){
         $user = \Auth::user();
-        $weiUser = session('wechat.oauth_user.default'); // 拿到授权用户资料
-        return $weiUser;
+        $weiUser = session('wechat.oauth_user.default'); // 拿到授权用户资
         $item = DC::where('uid','=',$user->id)->first();
         return view('usercenter',['user' => $user,'weiUser'=>$weiUser,'isStatus' => $item,'vip' => ($user->vip > \Carbon\Carbon::now())]);
     }
