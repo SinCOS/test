@@ -16,12 +16,12 @@ Auth::routes();
 Route::get('/test','HomeController@test')->name('testpay');
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/detail/{id}','HomeController@detail')->name('detail');
-Route::get('/home','HomeController@home')->name("userCenter");
 Route::get('/apply','HomeController@apply')->name("apply");
 Route::post("/apply/{id}",'HomeController@apply_store')->name('applystore');
 Route::post('/uploadPic','HomeController@uploadimg')->name("uploadpic");
 Route::get('/queryOrder/{orderNo}','PayController@queryOrder')->name('queryOrder');
 Route::post('pay/notify','PayController@notify')->name('notify');
 Route::group(['middleware' => ['auth','web', 'wechat.oauth']], function () {
+    Route::get('/home','HomeController@home')->name("userCenter");
     Route::get('/pay/vip', 'PayController@pay')->name('JSAPI');
 });

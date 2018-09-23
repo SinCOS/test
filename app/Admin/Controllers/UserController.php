@@ -81,7 +81,9 @@ class UserController extends Controller
                 return $vip >\Carbon\Carbon::now()  ? "<span>是</span><br><span>{$vip}</span>" :  '否';
             });
             
-            $grid->status('审核');
+            $grid->column('status','审核')->display(function($status){
+                return $status == 1 ?'通过':'未通过';
+            });
             $grid->created_at('注册时间');
             //$grid->updated_at();
         });
