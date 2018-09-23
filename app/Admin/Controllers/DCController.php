@@ -121,12 +121,12 @@ class DCController extends Controller
             $form->display('uid','手机号码')->with(function($val){
                 return User::find($val)->mobile ;
             });
-            $form->image('xybg','xybg')->uniqueName();
+            $form->image('xybg','信用报告')->uniqueName();
             $form->image('xsz','行驶证')->uniqueName();
             $form->image('sfzz','身份证正面')->uniqueName();
             $form->image('sfzf','身份证反面')->uniqueName();
             $form->image('fcz','房产证')->uniqueName();
-            $form->editor('content','附加内容');
+            $form->multipleImage('content','附加内容')->removable();
             //  $form->image('jsz','驾驶证')->uniqueName();
             $form->text('ll','借款利率');
             $form->display('jkje','借款金额');
