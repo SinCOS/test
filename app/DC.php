@@ -13,9 +13,20 @@ class DC extends Model
      * @var array
      */
     protected $fillable = [
-        'uid', 'jkje', 'dyxx','hkfs','jkms','sex','hyzk','zgxl','address','yjsr','njsr','imglist','jkqx'
+        'uid', 'jkje', 'dyxx','hkfs','jkms','sex','hyzk','zgxl','address','yjsr','njsr','imglist','jkqx','content'
     ];
 
+    public function setContentAttribute($pictures)
+{
+    if (is_array($pictures)) {
+        $this->attributes['content'] = json_encode($pictures);
+    }
+}
+
+public function getContentAttribute($pictures)
+{
+    return json_decode($pictures, true);
+}
     /**
      * The attributes that should be hidden for arrays.
      *
