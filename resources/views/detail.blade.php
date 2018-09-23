@@ -666,7 +666,6 @@
         }
 
         var mes = pub_money(jude)
-          yqsyCal($("#money").val());
         if (mes !== "") {
             $("#emInfo").html(mes);
         } else {
@@ -731,7 +730,7 @@
 
     function yqsyCal(money) {
         var ll = {{$detail->ll}};
-        $('#yqsy').val(money * (1+ll/100));
+        $('#yqsy').text(money * (1+ll/100) + "元");
     }
 
 
