@@ -59,12 +59,12 @@ class HomeController extends Controller
         'hkfs' => 'required',
         'dyxx'=> 'required',
         'fcz'=>'required',
-           'tdz'=>'required',
+        //    'tdz'=>'required',
             'xsz'=>'required',
            'sfzz'=>'required',
             'sfzf'=>'required',
-            'hkb'=>'required',
-            'jsz'=>'required',
+            'xybg'=>'required',
+            // 'jsz'=>'required',
         ]);
         $data = $request->all();
     
@@ -83,12 +83,12 @@ class HomeController extends Controller
                 'hkfs' => $data['hkfs'],
                 'dyxx' => $data['dyxx'],
                 'fcz' => $data['fcz'],
-                'tdz' => $data['tdz'],
+                'xybg' => $data['xybg'],
                 'xsz' => $data['xsz'],
                 'sfzz' => $data['sfzz'],
                 'sfzf' => $data['sfzf'],
-                'hkb' => $data['hkb'],
-                'jsz' => $data['jsz'],
+                // 'hkb' => $data['hkb'],
+                // 'jsz' => $data['jsz'],
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ]);
@@ -96,6 +96,9 @@ class HomeController extends Controller
     }
     public function home(){
         $user = \Auth::user();
+        if($user->status == 0){
+            return '请在管理员审核之后，再次进行登录!';
+        }
         $item = DC::where('uid','=',$user->id)->first();
         return view('usercenter',['user' => $user,'isStatus' => $item,'vip' => ($user->vip > \Carbon\Carbon::now())]);
     }

@@ -286,7 +286,7 @@
                     <li class="action" data-id="tab-desc" id="tabli">借款描述</li>
                     <li data-id="tab-borrow">借款人信息</li>
 
-                    <li data-id="tab-press">抵押信息</li>
+                    <li style="display:none;" data-id="tab-press">抵押信息</li>
 
                     <li data-id="tab-prov">认证&证明</li>
                 </ul>
@@ -390,6 +390,7 @@
                         </a>
                         <p>户口本</p>
                     </div>
+
 
 
                     <div class="provGroup">

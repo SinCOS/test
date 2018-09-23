@@ -63,6 +63,7 @@
                                 <option value="按月付息，到期还本金" >按月付息，到期还本金</option>
 								<option value="按季度付息，到期还本金">按季度付息，到期还本金</option>
                                 <option value="到期还本息" >到期还本付息</option>
+                                <option value="等额本金">等额本金</option>
                             </select>
                         </div>
                     </div>
@@ -131,21 +132,21 @@
                             <input type="number" class="form-control" placeholder="填写纯数字" v-model='njsr' name="njsr" value="" required="required" >
                         </div>
                     </div>
+                     <div class="form-group  ">
 
+                        <label for="avatar" class="col-xs-12 col-sm-4 col-md-3 col-lg-2 control-label">土地证</label>
+
+                        <div class="col-sm-8 col-xs-12">
+                            <input type="file" id='xybg' class="file" name="avatar"  />
+                        </div>
+                    </div>
                     <div class="form-group  ">
                         <label for="avatar" class="col-xs-12 col-sm-4 col-md-3 col-lg-2 control-label">房产证</label>
                         <div class="col-sm-8 col-xs-12">
                             <input type="file" id='fcz' class="file" name="avatar"  />
                         </div>
                     </div>
-                    <div class="form-group  ">
-
-                        <label for="avatar" class="col-xs-12 col-sm-4 col-md-3 col-lg-2 control-label">土地证</label>
-
-                        <div class="col-sm-8 col-xs-12">
-                            <input type="file" id='tdz' class="file" name="avatar"  />
-                        </div>
-                    </div>
+                   
                     <div class="form-group  ">
 
                         <label for="avatar" class="col-xs-12 col-sm-4 col-md-3 col-lg-2 control-label">行驶证</label>
@@ -170,22 +171,8 @@
                             <input type="file" id='sfzf' class="file" name="avatar"  />
                         </div>
                     </div>
-                    <div class="form-group  ">
 
-                        <label for="avatar" class="col-xs-12 col-sm-4 col-md-3 col-lg-2 control-label">户口本</label>
 
-                        <div class="col-sm-8 col-xs-12">
-                            <input type="file" id='hkb' class="file" name="avatar"  />
-                        </div>
-                    </div>
-                    <div class="form-group  ">
-
-                        <label for="avatar" class="col-xs-12 col-sm-4 col-md-3 col-lg-2 control-label">驾驶证</label>
-
-                        <div class="col-sm-8 col-xs-12">
-                            <input type="file" id='jsz' class="file" name="avatar"  />
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="form-group">
@@ -261,18 +248,18 @@ function getCookie(name)
             hkfs: '按月付息，到期还本金',
             dyxx: '信用借款',
             fcz:'',
-            tdz:'',
+           // tdz:'',
             xsz:'',
             sfzz:'',
             sfzf:'',
-            hkb:'',
-            jsz:'',
-            
+           // hkb:'',
+           // jsz:'',
+            xybg:''
 
         },
         methods:{
             submit(){
-                var imglist = ['fcz','tdz','xsz','sfzz','sfzf','hkb','jsz'];
+                var imglist = ['fcz','xsz','sfzz','sfzf','xybg'];
                 for (let index = 0; index < imglist.length; index++) {
                     const element = imglist[index];
                     if(this.$data[element] == ''){
@@ -283,11 +270,18 @@ function getCookie(name)
                 
                 $.post("/apply/"+'0', this.$data,
                     function (data, textStatus, jqXHR) {
-                        console.log(data);
+                        if(data == ""){
+                            alert('提交成功');
+                            window.location = '/home';
+                            return false;
+                        }else{
+                            alert('提交失败');
+                            return false;
+                        }
                     },
                     "json"
                 );
-                return true;
+                return false;
             },
         }
     })
