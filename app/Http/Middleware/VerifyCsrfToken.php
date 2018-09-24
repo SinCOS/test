@@ -15,7 +15,8 @@ class VerifyCsrfToken extends Middleware
         '/uploadPic',
         '/apply/*',
         'wechat',
-        '/pay/*'
+        '/pay/*',
+        '/order/*'
         //
     ];
 }

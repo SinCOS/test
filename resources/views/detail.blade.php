@@ -750,11 +750,7 @@
             $("#emInfo").html(mes);
             return false;
         }
-                $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
+   
 
          $.post('/order/'+{{$detail->id}}, {money: inputMoney}, function(data, textStatus, xhr) {
 
@@ -821,6 +817,7 @@
 
     var j = jQuery.noConflict();
     j(document).ready(function() {
+
         j('#tab-prov img').fsgallery()
     })
 </script>
