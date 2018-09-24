@@ -523,7 +523,7 @@
 
 <script type="text/javascript" src="/app/js/ours.js"></script>
 <script type="text/javascript" src="/app/js/form.js"></script>
-<script type="text/javascript" src="/app/js/jq.js"></script>
+<script src="/vendor/laravel-admin/AdminLTE/plugins/jQuery/jQuery-2.1.4.min.js"></script>
 <script type="text/javascript" src="/app/js/fs_forse.js"></script>
 <script>
     window.onpageshow = function(event) {
