@@ -438,7 +438,7 @@
 
 
 <!-- floatW start -->
-<form id="lendForm" method="post"  onsubmit="return moneyVail();">
+<form id="lendForm" method="POST"  onsubmit="return moneyVail();">
     <input type="hidden" name="tijiao" value="yes"/>
     <input type="hidden" name="id" value="{$id}"/>
     <input type="hidden" id="token" name="token" value="debd8bdb-221f-4de2-8c9d-d6ab618f56b8"/>
@@ -523,7 +523,8 @@
 
 <script type="text/javascript" src="/app/js/ours.js"></script>
 <script type="text/javascript" src="/app/js/form.js"></script>
-
+<script type="text/javascript" src="/app/js/jq.js"></script>
+<script type="text/javascript" src="/app/js/fs_forse.js"></script>
 <script>
     window.onpageshow = function(event) {
         if (event.persisted) {
@@ -749,8 +750,17 @@
             $("#emInfo").html(mes);
             return false;
         }
-//        $("#lendForm").attr("action", rootPath + "/user/toLogin?flag=" + $("#loanApplicationId").val()).submit();
-        $("#lendForm").submit();//这里是我自己改的
+                $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+         $.post('/order/'+{{$detail->id}}, {money: inputMoney}, function(data, textStatus, xhr) {
+
+        }).fail(function(ev){
+            console.log(ev);
+        });
     })
 
     $("#noVerified").click(function () {
@@ -789,11 +799,11 @@
             $("#emInfo").html(mes);
             return false;
         }
-        $.post('/order/'+{{$detail->id}}, {money: inputMoney}, function(data, textStatus, xhr) {
+        // $.post('/order/'+{{$detail->id}}, {money: inputMoney}, function(data, textStatus, xhr) {
             
-        }).fail(function(ev){
-            console.log(ev);
-        });
+        // }).fail(function(ev){
+        //     console.log(ev);
+        // });
         return false;
     }
     function _tabli(){
@@ -806,8 +816,7 @@
 
     }
 </script>
-<script type="text/javascript" src="/app/js/jq.js"></script>
-<script type="text/javascript" src="/app/js/fs_forse.js"></script>
+
 <script>
 
     var j = jQuery.noConflict();
