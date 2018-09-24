@@ -9,10 +9,10 @@ class vOrder extends Model
 	protected $table = 'dcorder';
 	protected $fill = [
 		'no' ,'uid','money','status','item_id'
-	]
+	];
 
-	public function setUpdatedAtAttribute($values){
-
-	}
+	public function setUpdatedAtAttribute($value) {
+        
+    }
     //
 }
