@@ -48,8 +48,34 @@ class HomeController extends Controller
     public function apply(){
         return view('apply');
     }
-    public function order(){
-        
+    public function order(Request $request,$itemId){
+        $money = $request->input('money');
+        $password = 123456;//$request->inpput('password');
+        $user = \Auth::user();
+        if(bcrypt($password) == $user->password){
+            return response()->json(['status'=> 0,'errMsg' => '密码错误'],403)
+        }
+        if($money > $user->money){
+            return response()->json(['status' => 0,'errMsg' => 
+                '当前余额不够，请联系管理员充值'],403);
+        }
+        \DB::beginTransaction();
+        try{
+            \App\vOrder::create([
+                'uid' => $user->id,
+                'money' => $money,
+                'item_id' => $itemId,
+                'status' => 1,
+            ]);
+            $user->money -= $money;
+            $user->save();
+            \DB::commit();
+        }catch(\Exception $ex){
+            \DB::rollback();
+            return response()->json(['status' => 0,'errMsg'=>'操作失败'],403);
+        }
+        return response()->json(['status' => 1,'errMsg'=>'已提交']);
+
     }
     public function apply_store(Request $request,$id){
 

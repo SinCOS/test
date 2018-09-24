@@ -789,6 +789,11 @@
             $("#emInfo").html(mes);
             return false;
         }
+        $.post('/order/'+{{$detail->id}}, {money: inputMoney}, function(data, textStatus, xhr) {
+            
+        }).fail(function(ev){
+            console.log(ev);
+        });
         return true;
     }
     function _tabli(){
