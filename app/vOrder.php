@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class vOrder extends Model
 {
 	protected $table = 'dcorder';
-	protected $fill = [
+	protected $fillable = [
 		'uid','money','status','item_id'
 	];
 

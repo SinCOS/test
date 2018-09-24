@@ -70,7 +70,7 @@ class HomeController extends Controller
             $user->money -= $money;
             $user->save();
             \DB::commit();
-        }catch(\Illuminate\Database\QueryException $ex ){
+        }catch(\Exception $ex ){
             \DB::rollback();
             return response()->json(['status' => 0,'errMsg'=>$ex->getMessage()],403);
         }
