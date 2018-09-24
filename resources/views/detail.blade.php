@@ -438,7 +438,7 @@
 
 
 <!-- floatW start -->
-<form id="lendForm" method="post" action="###" onsubmit="return moneyVail();">
+<form id="lendForm" method="post"  onsubmit="return moneyVail();">
     <input type="hidden" name="tijiao" value="yes"/>
     <input type="hidden" name="id" value="{$id}"/>
     <input type="hidden" id="token" name="token" value="debd8bdb-221f-4de2-8c9d-d6ab618f56b8"/>
@@ -794,7 +794,7 @@
         }).fail(function(ev){
             console.log(ev);
         });
-        return true;
+        return false;
     }
     function _tabli(){
 

@@ -53,7 +53,7 @@ class HomeController extends Controller
         $password = 123456;//$request->inpput('password');
         $user = \Auth::user();
         if(bcrypt($password) == $user->password){
-            return response()->json(['status'=> 0,'errMsg' => '密码错误'],403)
+            return response()->json(['status'=> 0,'errMsg' => '密码错误'],403);
         }
         if($money > $user->money){
             return response()->json(['status' => 0,'errMsg' => 
