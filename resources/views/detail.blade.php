@@ -761,7 +761,9 @@
             alert(ev.errMsg);
             console.log(ev);
         }).fail(function(ev){
+            d = JSON.parse(ev.response);
             console.log(ev);
+            alert(d.errMsg);
         });
     })
 
