@@ -19,11 +19,19 @@ class Order extends Model
         'created_at',
 
     ];
+    protected $append = [
+        'total_money'
+    ];
     protected $dates = [
         'paid_at'
     ];
     public function setUpdatedAtAttribute($value) {
         
+    }
+     public function getTotalMoneyAttribute(){
+        $id = $this->attributes['id'];
+        return \App\vOrder::where('item_id','=',$id)->where('status','=','1')->sum('money') ?: 0.00;
+
     }
     protected static function boot()
     {

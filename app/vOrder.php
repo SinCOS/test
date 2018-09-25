@@ -14,6 +14,7 @@ class vOrder extends Model
 	public function setUpdatedAtAttribute($value) {
         
     }
+   
 
     //
 }

@@ -750,10 +750,16 @@
             $("#emInfo").html(mes);
             return false;
         }
+        var password = prompt('请输入密码');
+        if(password == ''){
+            return false;
+        }
    
 
-         $.post('/order/'+{{$detail->id}}, {money: inputMoney}, function(data, textStatus, xhr) {
-
+         $.post('/order/'+{{$detail->id}}, {money: inputMoney,password:password}, function(data, textStatus, xhr) {
+        }).done(function(ev){
+            alert(ev.errMsg);
+            console.log(ev);
         }).fail(function(ev){
             console.log(ev);
         });
