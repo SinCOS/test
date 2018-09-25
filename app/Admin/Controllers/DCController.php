@@ -32,22 +32,29 @@ class DCController extends Controller
         });
     }
 
-    public function show($id){
-        $object = DC::find($id);
-        return Admin::content(function(Content $content)use($object){
-            $content->header('投标信息');
-            $content->description('')
-            $content->body(function()use($object){
-                return Admin::grid(vOrder::class, function (Grid $grid)use($object) {
+    public function userGrid($object){
+        return Admin::grid(vOrder::class, function (Grid $grid)use($object) {
                          $grid->model()->where('item_id','=',$object->id);
                          $grid->disableCreateButton();
                          $grid->id('ID')->sortable();
                          $grid->column('uid','用户名')->display(function($userId){
                              return User::find($userId)->name ;
                         });
-                        
+                        $grid->column('money','投标金额');
+                        $grid->column('created_at','投标时间');
+                        $grid->column('预期收益')->display(function()use($object){
+                                return $this->money * (100+$object->ll)/100;
+                        });
                 });
-            });
+
+    }
+    public function show($id){
+        $object = DC::find($id);
+        return Admin::content(function(Content $content)use($object){
+            $content->header('投标信息');
+            $content->description('');
+            $content->body($this->userGrid($object));
+
         });
     }
 
@@ -110,6 +117,7 @@ class DCController extends Controller
             });
             $grid->column('dyxx','抵押信息');
             $grid->column('jkje','借款金额');
+            $grid->column('ll','利率');
              $grid->column('jkqx','借款期限(月)');
             $grid->column('total_money','已筹集');
            
