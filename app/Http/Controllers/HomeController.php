@@ -70,6 +70,10 @@ class HomeController extends Controller
         }
         \DB::beginTransaction();
         try{
+            if($money + $item->total_money == $item->jkje){
+                $item->status = 2;
+                $item->save();
+            }
             \App\vOrder::create([
                 'uid' => $user->id,
                 'money' => $money,
@@ -78,10 +82,7 @@ class HomeController extends Controller
             ]);
             $user->money -= $money;
             $user->save();
-            if($money + $item->total_money == $item->jkje){
-                $item->status = 2;
-                $item->save();
-            }
+            
             \DB::commit();
         }catch(\Exception $ex ){
             \DB::rollback();
