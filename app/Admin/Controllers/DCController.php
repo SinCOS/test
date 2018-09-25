@@ -108,7 +108,7 @@ class DCController extends Controller
             $grid->actions(function ($actions) {
                // $actions->disableDelete();
                 //$actions->disableEdit();
-                    $actions->append('<a href="debit-credit/users/{$this->id}"><i class="fa fa-eye"></i></a>');
+                    $actions->append("<a href=\"debit-credit/users/{$actions->row['id']}\"><i class=\"fa fa-eye\"></i></a>");
                // $actions->disableView();
             });
             $grid->id('ID')->sortable();
