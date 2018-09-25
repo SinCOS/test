@@ -91,7 +91,7 @@ class DCController extends Controller
             $grid->column('dyxx','抵押信息');
             $grid->column('jkje','借款金额');
              $grid->column('jkqx','借款期限(月)');
-            $grid->display('total_money','已筹集');
+            $grid->column('total_money','已筹集');
            
             $grid->updated_at('最后更新');
             $states = [
@@ -124,7 +124,7 @@ class DCController extends Controller
                 return User::find($val)->name;
             });
             $form->display('uid','VIP')->with(function($val){
-                return User::find($val)->vip == 1 ? '是': '否';
+                return User::find($val)->vip >=\Carbon\Carbon::now() ? '是': '否';
             });
             $form->display('uid','手机号码')->with(function($val){
                 return User::find($val)->mobile ;
@@ -147,7 +147,7 @@ class DCController extends Controller
             $form->display('hyzk','婚姻状况');
             $form->display('zgxl','最高学历');
             $form->display('address','居住地址');
-            $form->select('status','状态')->options(['1'=>'通过','0'=>'未审核','-1'=>'未通过']);
+            $form->select('status','状态')->options(['1'=>'通过','0'=>'未审核','-1'=>'未通过','2' => '投标完成']);
             $form->display('updated_at', '申请时间');
         });
     }
