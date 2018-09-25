@@ -14,6 +14,7 @@ Route::group([
     $router->resource('users', UserController::class);
     $router->resource('debit-credit', DCController::class);
     $router->resource('banner', BannerController::class);
+    $router->get('/debit-credit/users/{id}','DCController@show');
     $router->get('manual/charge','ManualController@charge');
     $router->post('manual/charge','ManualController@postCharge');
     $router->get('manual/refund','ManualController@refund');

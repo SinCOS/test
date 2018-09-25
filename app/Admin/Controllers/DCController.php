@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\DC;
+use App\vOrder;
 use App\User;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -28,6 +29,25 @@ class DCController extends Controller
             $content->description('description');
 
             $content->body($this->grid());
+        });
+    }
+
+    public function show($id){
+        $object = DC::find($id);
+        return Admin::content(function(Content $content)use($object){
+            $content->header('投标信息');
+            $content->description('')
+            $content->body(function()use($object){
+                return Admin::grid(vOrder::class, function (Grid $grid)use($object) {
+                         $grid->model()->where('item_id','=',$object->id);
+                         $grid->disableCreateButton();
+                         $grid->id('ID')->sortable();
+                         $grid->column('uid','用户名')->display(function($userId){
+                             return User::find($userId)->name ;
+                        });
+                        
+                });
+            });
         });
     }
 
@@ -81,7 +101,7 @@ class DCController extends Controller
             $grid->actions(function ($actions) {
                // $actions->disableDelete();
                 //$actions->disableEdit();
-        
+                    $actions->append('<a href="debit-credit/users/{$this->id}"><i class="fa fa-eye"></i></a>');
                // $actions->disableView();
             });
             $grid->id('ID')->sortable();
