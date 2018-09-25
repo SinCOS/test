@@ -50,7 +50,7 @@ class HomeController extends Controller
     }
     public function order(Request $request,$itemId){
         $money = $request->input('money');
-        $password = $request->inpput('password');
+        $password = $request->input('password');
         $user = \Auth::user();
         if(bcrypt($password) == $user->password){
             return response()->json(['status'=> 0,'errMsg' => '密码错误'],403);

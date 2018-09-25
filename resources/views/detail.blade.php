@@ -757,7 +757,7 @@
    
 
          $.post('/order/'+{{$detail->id}}, {money: inputMoney,password:password}, function(data, textStatus, xhr) {
-        }).done(function(ev){
+        }).always(function(ev){
             alert(ev.errMsg);
             console.log(ev);
         }).fail(function(ev){
