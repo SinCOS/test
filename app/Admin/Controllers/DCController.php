@@ -34,6 +34,12 @@ class DCController extends Controller
 
     public function userGrid($object){
         return Admin::grid(vOrder::class, function (Grid $grid)use($object) {
+                        grid->actions(function ($actions) {
+                                $actions->disableDelete();
+                                $actions->disableEdit();
+                                // $actions->append("<a href=\"debit-credit/users/{$actions->row['id']}\"><i class=\"fa fa-eye\"></i></a>");
+                           // $actions->disableView();
+                         });
                          $grid->model()->where('item_id','=',$object->id);
                          $grid->disableCreateButton();
                          $grid->id('ID')->sortable();
@@ -42,6 +48,7 @@ class DCController extends Controller
                         });
                         $grid->column('money','投标金额');
                         $grid->column('created_at','投标时间');
+
                         $grid->column('预期收益')->display(function()use($object){
                                 return $this->money * (100+$object->ll)/100;
                         });
