@@ -34,7 +34,7 @@ class DCController extends Controller
 
     public function userGrid($object){
         return Admin::grid(vOrder::class, function (Grid $grid)use($object) {
-                        grid->actions(function ($actions) {
+                        $grid->actions(function ($actions) {
                                 $actions->disableDelete();
                                 $actions->disableEdit();
                                 // $actions->append("<a href=\"debit-credit/users/{$actions->row['id']}\"><i class=\"fa fa-eye\"></i></a>");
