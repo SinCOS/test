@@ -52,7 +52,7 @@ class HomeController extends Controller
         $money = $request->input('money');
         $password = $request->input('password');
         $user = \Auth::user();
-        if(bcrypt($password) == $user->password){
+        if(bcrypt($password) !== $user->password){
             return response()->json(['status'=> 0,'errMsg' => '密码错误'],403);
         }
         $item = DC::find($itemId);
