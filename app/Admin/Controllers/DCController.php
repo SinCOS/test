@@ -76,7 +76,7 @@ class DCController extends Controller
             $grid->disableCreateButton();
            // $grid->disableRowSelector();
             $grid->filter(function($filter){
-                $filter->equal('status','状态')->select(['1'=>'通过','0'=>'未审核','-1'=>'未通过']);
+                $filter->equal('status','状态')->select(['1'=>'正在投标','0'=>'未审核','-1'=>'未通过','2' => '投标完成']);
             });
             $grid->actions(function ($actions) {
                // $actions->disableDelete();
@@ -91,7 +91,7 @@ class DCController extends Controller
             $grid->column('dyxx','抵押信息');
             $grid->column('jkje','借款金额');
              $grid->column('jkqx','借款期限(月)');
-            $grid->column('jkms','描述');
+            $grid->display('total_money','已筹集');
            
             $grid->updated_at('最后更新');
             $states = [
@@ -104,7 +104,7 @@ class DCController extends Controller
                     2 => '投标完成',
                     -1 => '审核失败',
                     0 => '待审核'
-                ]
+                ];
                 return $config[$status];
              });
         });
