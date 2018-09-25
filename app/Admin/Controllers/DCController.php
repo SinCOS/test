@@ -98,7 +98,15 @@ class DCController extends Controller
                 'on'  => ['value' => 1, 'text' => '打开', 'color' => 'primary'],
                 'off' => ['value' => 2, 'text' => '关闭', 'color' => 'default'],
             ];
-             $grid->status('审核')->editable('select', [1 => '审核通过', -1 => '审核失败', 0 => '未审核']);
+             $grid->status('审核')->display(function($status){
+                $config = [
+                    1 => '正在投标',
+                    2 => '投标完成',
+                    -1 => '审核失败',
+                    0 => '待审核'
+                ]
+                return $config[$status];
+             });
         });
     }
 
