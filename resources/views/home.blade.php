@@ -76,9 +76,9 @@
                         <em><投标中></em>
                         <div class="profirst">
                             <div class="progress">
-                                <div class="pro-inter" style="width:0%;"></div>
+                                <div class="pro-inter" style="width:{{$detail->total_money/$detail->jkje*100}}%;"></div>
                             </div>
-                            <div class="pro-data">0%</div>
+                            <div class="pro-data">{{round($detail->total_money/$detail->jkje,2)*100}}%</div>
                         </div>
                 </div>
             </div>

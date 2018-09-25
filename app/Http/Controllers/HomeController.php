@@ -50,14 +50,23 @@ class HomeController extends Controller
     }
     public function order(Request $request,$itemId){
         $money = $request->input('money');
-        $password = 123456;//$request->inpput('password');
+        $password = $request->inpput('password');
         $user = \Auth::user();
         if(bcrypt($password) == $user->password){
             return response()->json(['status'=> 0,'errMsg' => '密码错误'],403);
         }
+        $item = DC::find($itemId);
+        if(!$item||$item->status ==2 ||$item->total_money >= $item->jkje){
+            return response()->json(['status' => 0,'errMsg' => 
+                '此单已完成投标'],403);
+        }
         if($money > $user->money){
             return response()->json(['status' => 0,'errMsg' => 
                 '当前余额不够，请联系管理员充值'],403);
+        }
+        if($money + $item->total_money > $item->jkje){
+            return response()->json(['status' => 0,'errMsg' => 
+                '投标金额超出投标范围'],403);
         }
         \DB::beginTransaction();
         try{
@@ -69,6 +78,10 @@ class HomeController extends Controller
             ]);
             $user->money -= $money;
             $user->save();
+            if($money + $item->total_money == $item->jkje){
+                $item->status = 2;
+                $item->save();
+            }
             \DB::commit();
         }catch(\Exception $ex ){
             \DB::rollback();

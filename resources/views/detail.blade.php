@@ -268,12 +268,12 @@
             <span>借款期限：<em>{{$detail->jkqx}}个月</em></span>
             <span>借款金额：<em>{{$detail->jkje}}元</em></span>
             <span>起投金额：<em>100元</em></span>
-            <span>可投金额：<em class="blue">{{$detail->jkje}}元</em></span>
+            <span>可投金额：<em class="blue">{{$detail->jkje-$detail->total_money}}元</em></span>
 			<span>进度
 	            <div class="progress">
-                    <div class="pro-inter" style="width:0%;"></div>
+                    <div class="pro-inter" style="width:{{$detail->total_money/$detail->jkje*100}}%;"></div>
                 </div>
-	            0%
+	            {{round($detail->total_money/$detail->jkje,2)*100}}%
 		    </span>
         </div>
         <!-- data start -->
