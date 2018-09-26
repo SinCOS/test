@@ -75,6 +75,8 @@ class ManualController extends Controller
         $money = doubleval($request->input('money'));
         $user->money +=$money;
         $user->save();
+         \DB::table("moneylog")->insert(['uid' =>$user->id,'content' => 
+            "后台充值:{$money}",'money' =>$money,'created_at' =>\Carbon\Carbon::now()]);
         return '<script>alert("充值成功");history.go(-1);</script>;';
     }
     public function postRefund(Request $request){
@@ -89,6 +91,8 @@ class ManualController extends Controller
         $money = doubleval($request->input('money'));
         $user->money +=$money;
         $user->save();
+        \DB::table("moneylog")->insert(['uid' =>$user->id,'content' => 
+            "后台扣款:{$money}",'money' =>$money,'created_at' =>\Carbon\Carbon::now()]);
         return '<script>alert("扣款成功");history.go(-1);</script>;';
     }
     public function Refund(){

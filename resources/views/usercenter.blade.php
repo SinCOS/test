@@ -87,7 +87,7 @@
 
     <div class="list1" style="position: absolute;bottom: 0px;width: 100%;">
         <div class="wp_foot">
-            <p><a href="javascript:;">版权所有</a> | <a href="javascript:;">客户端</a></p>
+            <p><a href="javascript:;">版权所有 (C)  众安金融</a> | <a href="javascript:;">客户端</a></p>
         </div>
     </div>
 </div>

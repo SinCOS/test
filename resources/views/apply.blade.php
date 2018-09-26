@@ -271,7 +271,7 @@ function getCookie(name)
                 $.post("/apply/"+'0', this.$data,
                     function (data, textStatus, jqXHR) {
                         if(data == ""){
-                            alert('提交成功');
+                            alert('您的资料已经提交完成，系统将在24小时内审核结果!');
                             window.location = '/home';
                             return false;
                         }else{

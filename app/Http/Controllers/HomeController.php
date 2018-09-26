@@ -32,7 +32,7 @@ class HomeController extends Controller
     {   
         $user = \Auth::user();
         if($user->status !=1){
-            return '请在管理员审核之后，再次进行登录!';
+            return '<script>alert("您的申请已经提交,系统将在24小时内审核!");</script>';
         }
        $list =  Banner::orderBy('sort','asc')->get();
         $dclist=  DC::where('status',1)->orderBy('updated_at','desc')->get();
@@ -82,7 +82,8 @@ class HomeController extends Controller
             ]);
             $user->money -= $money;
             $user->save();
-            
+            \DB::table("moneylog")->insert(['uid' =>$user->id,'content' => 
+            "投标号:{$item->id} 投标金额:{$money}",'money'=>-$money,'created_at' =>\Carbon\Carbon::now()]);
             \DB::commit();
         }catch(\Exception $ex ){
             \DB::rollback();
