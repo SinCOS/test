@@ -267,7 +267,7 @@ function getCookie(name)
                         return false;
                     }
                 }
-                
+                $('input[name="submit"]').attr('disabled',true);
                 $.post("/apply/"+'0', this.$data,
                     function (data, textStatus, jqXHR) {
                         if(data.status == 1){
@@ -276,6 +276,7 @@ function getCookie(name)
                             return false;
                         }else{
                             alert('提交失败');
+                             $('input[name="submit"]').removeAttr('disabled');
                             return false;
                         }
                     },
