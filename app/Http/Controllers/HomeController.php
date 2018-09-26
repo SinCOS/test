@@ -140,7 +140,9 @@ class HomeController extends Controller
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ]);
+            return response()->json(['status' =>1]);
         }
+        return response()->json(['status' =>0]);
     }
     public function home(){
         $user = \Auth::user();
