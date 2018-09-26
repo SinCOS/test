@@ -29,6 +29,7 @@ class PayController extends Controller
             'status' => 0,
         ]);
         $app = \EasyWeChat::payment();
+
         $result = $app->order->unify([
             'body' => 'VIP会员费',
             'out_trade_no' => $order->no,
@@ -36,6 +37,9 @@ class PayController extends Controller
             'trade_type' => 'JSAPI',
             'openid' => $user->id,
          ]);
+        if($result['return_code'] == 'FAIL') {
+                return '系统错误';
+        }
         $jssdk = $app->jssdk;
         $json = $jssdk->bridgeConfig($result['prepay_id']);
         return view('pay',['result' => $json]);
