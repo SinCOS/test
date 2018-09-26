@@ -16,6 +16,10 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $user = \Auth::user();
+        if($user->status !=1){
+            return '<script>alert("您的申请已经提交,系统将在24小时内审核!");</script>';
+        }
     }
     public function test(){
         if(isset($_SESSION['openid'])){
@@ -31,9 +35,7 @@ class HomeController extends Controller
     public function index()
     {   
         $user = \Auth::user();
-        if($user->status !=1){
-            return '<script>alert("您的申请已经提交,系统将在24小时内审核!");</script>';
-        }
+       
        $list =  Banner::orderBy('sort','asc')->get();
         $dclist=  DC::where('status',1)->orderBy('updated_at','desc')->get();
         return view('home',['banner'=>$list,'dc' => $dclist]);
