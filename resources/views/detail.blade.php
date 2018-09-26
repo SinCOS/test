@@ -355,45 +355,17 @@
 
                 <!-- tab start -->
                 <div class="tab tab-prov clearfix" id="tab-prov" style="display:none">
-
-
-                    <div class="provGroup">
-                        <a href="/uploads/{{$detail->sfzf}}">
-                            <img src="/uploads/{{$detail->sfzf}}" alt="">
+                        
+                    @foreach ($detail->content as $element)
+                                  <div class="provGroup">
+                        <a href="/uploads/{{$element}}">
+                            <img src="/uploads/{{$element}}" alt="">
                         </a>
-                        <p>身份证反面</p>
+                        {{-- <p>身份证反面</p> --}}
                     </div>
+                    @endforeach
+          
 
-
-
-                    <div class="provGroup">
-                        <a href="/uploads/{{$detail->sfzz}}">
-                            <img src="/uploads/{{$detail->sfzz}}" alt="">
-                        </a>
-                        <p>身份证正面</p>
-                    </div>
-
-
-
-                    <div class="provGroup">
-                        <a href="/uploads/{{$detail->xybg}}">
-                            <img src="/uploads/{{$detail->xybg}}" alt="">
-                        </a>
-                        <p>房本</p>
-                    </div>
-
-
-
-                   
-
-
-
-                    <div class="provGroup">
-                        <a href="/uploads/{{$detail->xsz}}">
-                            <img src="/uploads/{{$detail->xsz}}" alt="">
-                        </a>
-                        <p>行驶证</p>
-                    </div>
 
 
                 </div>
