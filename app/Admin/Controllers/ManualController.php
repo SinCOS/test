@@ -65,10 +65,13 @@ class ManualController extends Controller
     }
     public function postCharge(Request $request){
         $this->validate($request,[
-            'name' => 'required|exists:users',
+            'mobile' => 'required|exists:users',
             'money' => 'required|numeric|min:1'
         ]);
-        $user = User::where('name','=',$request->input('name'))->first();
+        $user = User::where('mobile','=',$request->input('mobile'))->first();
+         if(!$user){
+            return '<script>alert("用户不存在");history.go(-1);</script>;';
+        }
         $money = doubleval($request->input('money'));
         $user->money +=$money;
         $user->save();
@@ -76,10 +79,13 @@ class ManualController extends Controller
     }
     public function postRefund(Request $request){
         $this->validate($request,[
-           'name' => 'required|exists:users',
+           'mobile' => 'required|exists:users',
             'money' => 'required|numeric|max:-1'
         ]);
-        $user = User::where('name','=',$request->input('name'))->first();
+        $user = User::where('mobile','=',$request->input('mobile'))->first();
+        if(!$user){
+            return '<script>alert("用户不存在");history.go(-1);</script>;';
+        }
         $money = doubleval($request->input('money'));
         $user->money +=$money;
         $user->save();
@@ -129,7 +135,7 @@ class ManualController extends Controller
         
             });
             $form->setAction($action);
-            $form->text('name', '用户名')->rules('required|min:3');
+            $form->text('mobile', '手机号')->rules('required|min:11');
             $form->html("人工操作",'操作');
             $form->currency('money','金额');
         });

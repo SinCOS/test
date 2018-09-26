@@ -72,6 +72,10 @@ class UserController extends Controller
     protected function grid()
     {
         return Admin::grid(User::class, function (Grid $grid) {
+            $grid->filter(function($filter){
+                $filter->like('mobile');
+                $filter->like('name');
+            });
             $grid->disableCreateButton();
             $grid->id('ID')->sortable();
             $grid->column('name');

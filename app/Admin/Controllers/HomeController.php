@@ -22,7 +22,7 @@ class HomeController extends Controller
             ['name' => '投标中',            'value' => \App\DC::where('status','=',1)->count()],
 
             ['name' => '成功项目数',      'value' => \App\DC::where('status','=',2)->count()],
-            ['name' => '成功筹款',    'value' => \App\vOrder::sum('money')],
+            ['name' => '成功筹款（RMB）',    'value' => \App\vOrder::sum('money')],
         ];
 
         return view('admin::dashboard.environment', compact('envs'));
