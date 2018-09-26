@@ -15,14 +15,14 @@ class HomeController extends Controller
     public static function first()
     {
         $envs = [
-            ['name' => '会员待审核',       'value' => \App\User::where('status','=',0)->sum(),
-            ['name' => '会员数',   'value' => \App\User::where('status','=',1)->sum()],
-            ['name' => 'VIP数量',               'value' => \App\User::where('vip','>=',\Carbon\Carbon::now())->sum()],
-            ['name' => '众筹项目数',             'value' => \App\DC::sum()],
-            ['name' => '投标中',            'value' => \App\DC::where('status','=',1)->sum()],
+            ['name' => '会员待审核',       'value' => \App\User::where('status','=',0)->count()],
+            ['name' => '会员数',   'value' => \App\User::where('status','=',1)->count()],
+            ['name' => 'VIP数量',               'value' => \App\User::where('vip','>=',\Carbon\Carbon::now())->count()],
+            ['name' => '众筹项目数',             'value' => \App\DC::count()],
+            ['name' => '投标中',            'value' => \App\DC::where('status','=',1)->count()],
 
-            ['name' => '成功项目数',      'value' => \App\DC::where('status','=',2)->sum()],
-            ['name' => '成功筹款',    'value' => \App\vOrder::sum()],
+            ['name' => '成功项目数',      'value' => \App\DC::where('status','=',2)->count()],
+            ['name' => '成功筹款',    'value' => \App\vOrder::sum('money')],
         ];
 
         return view('admin::dashboard.environment', compact('envs'));
@@ -31,21 +31,21 @@ class HomeController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('Dashboard');
-            $content->description('Description...');
+            $content->header('首页');
+            $content->description('此为描述...');
 
             $content->row(Dashboard::title());
 
             $content->row(function (Row $row) {
+                $row->column(4, function (Column $column) {
+                    $column->append(Dashboard::environment());
+                });
 
                 $row->column(4, function (Column $column) {
                     $column->append(self::first());
                 });
 
-                $row->column(4, function (Column $column) {
-                    $column->append(Dashboard::extensions());
-                });
-
+                
                 $row->column(4, function (Column $column) {
                     $column->append(Dashboard::dependencies());
                 });
