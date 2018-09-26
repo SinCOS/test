@@ -72,6 +72,7 @@ class UserController extends Controller
     protected function grid()
     {
         return Admin::grid(User::class, function (Grid $grid) {
+            $grid->model()->orderBy('created_at','desc');
             $grid->filter(function($filter){
                 $filter->like('mobile');
                 $filter->like('name');

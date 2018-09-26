@@ -11,15 +11,15 @@
                     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="username" class="col-md-4 control-label">用户名</label>
+                        <div class="form-group{{ $errors->has('mobile') ? ' has-error' : '' }}">
+                            <label for="username" class="col-md-4 control-label">手机号</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                                <input id="mobile" type="text" class="form-control" name="mobile" value="{{ old('mobile') }}" required autofocus>
 
-                                @if ($errors->has('name'))
+                                @if ($errors->has('mobile'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        <strong>{{ $errors->first('mobile') }}</strong>
                                     </span>
                                 @endif
                             </div>
