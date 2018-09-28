@@ -44,7 +44,11 @@ class DCController extends Controller
                          $grid->disableCreateButton();
                          $grid->id('ID')->sortable();
                          $grid->column('uid','用户名')->display(function($userId){
-                             return User::find($userId)->name ;
+                            $user = User::find($userId);
+                             return  "<a href=\"/admin/users/{$user->id}/edit\">{$user->name}</a>";
+                        });
+                        $grid->column('uid','手机号')->display(function($userId){
+                            return User::find($userId)->mobile;
                         });
                         $grid->column('money','投标金额');
                         $grid->column('created_at','投标时间');
@@ -169,7 +173,7 @@ class DCController extends Controller
             $form->image('sfzz','身份证正面')->uniqueName();
             $form->image('sfzf','身份证反面')->uniqueName();
             $form->image('fcz','房产证')->uniqueName();
-            $form->multipleImage('content','附加内容')->removable();
+            $form->multipleImage('content','附加内容')->uniqueName()->removable();
             //  $form->image('jsz','驾驶证')->uniqueName();
             $form->number('ll','借款利率')->rules('min:0');
             $form->display('jkje','借款金额');
