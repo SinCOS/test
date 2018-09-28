@@ -16,12 +16,14 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        
+    }
+    public function check(){
         $user = \Auth::user();
-        if($user && $user->status !=1){
+        if($user->status !=1){
             return '<script>alert("您的申请已经提交,系统将在24小时内审核!");</script>';
         }
     }
-
     /**
      * Show the application dashboard.
      *
@@ -30,7 +32,7 @@ class HomeController extends Controller
     public function index()
     {   
         $user = \Auth::user();
-       
+       $this->check();
         $list =  Banner::where('type','=',0)->orderBy('sort','asc')->get();
         $msg = Banner::where('type','=',1)->first();
 
@@ -38,6 +40,7 @@ class HomeController extends Controller
         return view('home',['banner'=>$list,'dc' => $dclist,'msg' =>$msg]);
     }
     public function detail($id){
+         $this->check();
         $detail = DC::find($id);
         if(!$detail){
             return 'error';
@@ -45,6 +48,7 @@ class HomeController extends Controller
         return view('detail',['detail' => $detail]);
     }
     public function apply(){
+         $this->check();
         return view('apply');
     }
     public function order(Request $request,$itemId){
@@ -144,6 +148,7 @@ class HomeController extends Controller
         return response()->json(['status' =>0]);
     }
     public function home(){
+         $this->check();
         $user = \Auth::user();
         $weiUser = session('wechat.oauth_user.default'); // 拿到授权用户资
         $item = DC::where('uid','=',$user->id)->first();
