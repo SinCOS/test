@@ -47,8 +47,8 @@ class DCController extends Controller
                             $user = User::find($userId);
                              return  "<a href=\"/admin/users/{$user->id}/edit\">{$user->name}</a>";
                         });
-                        $grid->column('uid','手机号')->display(function($userId){
-                            return User::find($userId)->mobile;
+                        $grid->column('手机号')->display(function(){
+                            return User::find($this->uid)->mobile;
                         });
                         $grid->column('money','投标金额');
                         $grid->column('created_at','投标时间');
