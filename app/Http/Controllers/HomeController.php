@@ -74,7 +74,8 @@ class HomeController extends Controller
         }
         \DB::beginTransaction();
         try{
-            if($money + $item->total_money == $item->jkje){
+            if($money + $item->total_money >= $item->jkje){
+               // \DB::table('dc')->where('id','=',$item->id)->update(['status' => 2]);decrement('')
                 $item->status = 2;
                 $item->save();
             }
