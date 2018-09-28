@@ -96,8 +96,13 @@ class BannerController extends Controller
 
             $form->display('id', 'ID');
             $form->image('pic','图片')->uniqueName();
-            $form->text('link','链接');
+            $form->text('link','链接')->rules('required');
+            $form->text('title','标题');
             $form->number('sort','排序');
+            $form->select('type','类型')->options([
+                '轮播' => 0,
+                '公告' => 1
+            ]);
             $form->switch('status','状态');
             $form->display('created_at', 'Created At');
          //   $form->display('updated_at', 'Updated At');

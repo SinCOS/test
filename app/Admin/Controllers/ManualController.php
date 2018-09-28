@@ -139,7 +139,9 @@ class ManualController extends Controller
         
             });
             $form->setAction($action);
-            $form->text('mobile', '手机号')->rules('required|min:11');
+            $form->text('mobile', '手机号')->rules('required|min:11',[
+                'min' => '手机号码格式不正确'
+            ]);
             $form->html("人工操作",'操作');
             $form->currency('money','金额');
         });
