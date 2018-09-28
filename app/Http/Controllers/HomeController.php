@@ -161,12 +161,11 @@ class HomeController extends Controller
         if($type == 'dc'){
             $list = DC::where('uid','=',$user->id)->orderBy('created_at','desc')->get();
             $title = '我的众筹';
-        }
-        else{
+        }else{
             $list = \App\vOrder::where('uid','=',$user->id)->orderBy('created_at','desc')->get();
             $title = '我的投标';
         }
-        return view('list',['arrays' => $list,'title' =>'我的众筹','type' =>$type]);
+        return view('list',['arrays' => $list,'title' =>$title,'type' =>$type]);
     }
     public function uploadimg(Request $request)
     {

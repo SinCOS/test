@@ -16,7 +16,7 @@ class vOrder extends Model
         
     }
    	
-   	publc function getItemNameColumn(){
+   	public function getItemNameColumn(){
    		return \App\DC::find($this->item_id)->dyxx;
    	}
 
