@@ -155,11 +155,18 @@ class HomeController extends Controller
         $item = DC::where('uid','=',$user->id)->first();
         return view('usercenter',['user' => $user,'weiUser'=>$weiUser,'isStatus' => $item,'vip' => ($user->vip > \Carbon\Carbon::now())]);
     }
-    public function DCItem(){
+    public function DCItem($type){
         $this->check();
         $user = \Auth::user();
-        $list = DC::where('uid','=',$user->id)->get();
-        return view('list',['arrays' => $list]);
+        if($type == 'dc'){
+            $list = DC::where('uid','=',$user->id)->orderBy('created_at','desc')->get();
+            $title = '我的众筹';
+        }
+        else{
+            $list = \App\vOrder::where('uid','=',$user->id)->orderBy('created_at','desc')->get();
+            $title = '我的投标';
+        }
+        return view('list',['arrays' => $list,'title' =>'我的众筹','type' =>$type]);
     }
     public function uploadimg(Request $request)
     {
