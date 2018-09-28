@@ -355,8 +355,8 @@
 
                 <!-- tab start -->
                 <div class="tab tab-prov clearfix" id="tab-prov" style="display:none">
-                        
-                    @foreach ($detail->content as $element)
+                    @if ($detail->content)
+                        @foreach ($detail->content as $element)
                                   <div class="provGroup">
                         <a href="/uploads/{{$element}}">
                             <img src="/uploads/{{$element}}" alt="">
@@ -364,6 +364,8 @@
                         {{-- <p>身份证反面</p> --}}
                     </div>
                     @endforeach
+                    @endif
+                    
           
 
 

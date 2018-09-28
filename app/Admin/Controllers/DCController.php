@@ -171,7 +171,7 @@ class DCController extends Controller
             $form->image('fcz','房产证')->uniqueName();
             $form->multipleImage('content','附加内容')->removable();
             //  $form->image('jsz','驾驶证')->uniqueName();
-            $form->text('ll','借款利率');
+            $form->number('ll','借款利率')->rules('min:0');
             $form->display('jkje','借款金额');
             $form->display('jkqx','借款期限');
             $form->display('dyxx','抵押信息');

@@ -21,7 +21,8 @@ class HomeController extends Controller
     public function check(){
         $user = \Auth::user();
         if($user->status !=1){
-            return '<script>alert("您的申请已经提交,系统将在24小时内审核!");</script>';
+            echo '<script>alert("您的申请已经提交,系统将在24小时内审核!");</script>';
+            exit();
         }
     }
     /**
