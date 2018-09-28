@@ -158,7 +158,7 @@ class HomeController extends Controller
     public function DCItem(){
         $this->check();
         $user = \Auth::user();
-        $list = DC::where('uid','=',$user->id)->$get();
+        $list = DC::where('uid','=',$user->id)->get();
         return view('list',['arrays' => $list]);
     }
     public function uploadimg(Request $request)

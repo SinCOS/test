@@ -69,8 +69,8 @@
     <!--au_inlist-->
     <div class="au_inlist">
         <ul>
-            <li><a href=""><img src="/app/images/home_serviceClick.png">我的众筹<span></span></a></li>
-            <li><a href=""><img src="/app/images/home_serviceClick.png">我的投标span></span></a></li>
+            <li><a href="/dcitems"><img src="/app/images/home_serviceClick.png">我的众筹<span></span></a></li>
+            <li><a href=""><img src="/app/images/home_serviceClick.png">我的投标<span></span></a></li>
             <li><a href="tel:0573-83980959"><img src="/app/images/home_serviceClick.png">联系平台<span></span></a></li>
         </ul>
     </div>
@@ -84,9 +84,9 @@
         </ul>
     </div>
 
-    <div class="mgt10"></div>
+    <div style='height:60px;'></div>
 
-    <div class="list1" style="position: absolute;bottom: 0px;width: 100%;">
+    <div class="list1" style="position: absolute;bottom: 0px;width: 100%;height: 40px;">
         <div class="wp_foot">
             <p><a href="javascript:;">版权所有 (C)  众安金融</a> | <a href="javascript:;">客户端</a></p>
         </div>
