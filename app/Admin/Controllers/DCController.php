@@ -124,7 +124,8 @@ class DCController extends Controller
             });
             $grid->id('ID')->sortable();
             $grid->column('uid','用户名')->display(function($userId){
-                return User::find($userId)->name ?: '不存在';
+                $user = User::find($userId);
+                return $user ? $user->name: '不存在';
             });
             $grid->column('dyxx','抵押信息');
             $grid->column('jkje','借款金额');
