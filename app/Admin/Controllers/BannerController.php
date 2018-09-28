@@ -77,6 +77,7 @@ class BannerController extends Controller
             $grid->column('link','链接')->display(function($link){
                 return "<a href='{$link}' target='_blank' >{$link}</a>";
             });
+            $grid->column('title','公告标题');
             $grid->column('pic','图片')->display(function($pic){
                 return "<a href='/uploads/{$pic}' target='_blank'><img src='/uploads/{$pic}'  width='64' height='64'/></a>";
             });
@@ -100,8 +101,8 @@ class BannerController extends Controller
             $form->text('title','标题');
             $form->number('sort','排序');
             $form->select('type','类型')->options([
-                '轮播' => 0,
-                '公告' => 1
+                 0 => '轮播',
+                1 => '公告'
             ]);
             $form->switch('status','状态');
             $form->display('created_at', 'Created At');

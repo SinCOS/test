@@ -31,9 +31,11 @@ class HomeController extends Controller
     {   
         $user = \Auth::user();
        
-        $list =  Banner::orderBy('sort','asc')->get();
+        $list =  Banner::where('type','=',0)->orderBy('sort','asc')->get();
+        $msg = Banner::where('type','=',1)->first();
+
         $dclist=  DC::where('status',1)->orderBy('updated_at','desc')->get();
-        return view('home',['banner'=>$list,'dc' => $dclist]);
+        return view('home',['banner'=>$list,'dc' => $dclist,'msg' =>$msg]);
     }
     public function detail($id){
         $detail = DC::find($id);

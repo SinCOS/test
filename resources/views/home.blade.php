@@ -46,13 +46,15 @@
 </header>
 
 <article>
-
-    <div class="first-title">
+    @if ($msg)
+         <div class="first-title">
         <p> <span></span>
-            测试信息
+            {{$msg->title}}
         </p>
         <h2>推荐借款</h2>
     </div>
+    @endif
+   
 
 
     <div class="proList">

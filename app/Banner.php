@@ -8,7 +8,7 @@ class Banner extends Model
 {
     protected $table = 'banner';
     protected $fillable = [
-        'link', 'pic', 'sort','status',
+        'link', 'pic', 'sort','status','title','type'
     ];
     //
 }
