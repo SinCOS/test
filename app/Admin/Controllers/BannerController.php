@@ -24,7 +24,7 @@ class BannerController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
+            $content->header('轮播');
             $content->description('description');
 
             $content->body($this->grid());
@@ -81,7 +81,7 @@ class BannerController extends Controller
             $grid->column('pic','图片')->display(function($pic){
                 return "<a href='/uploads/{$pic}' target='_blank'><img src='/uploads/{$pic}'  width='64' height='64'/></a>";
             });
-            $grid->created_at();
+            $grid->created_at('创建时间');
           //  $grid->updated_at();
         });
     }

@@ -74,16 +74,16 @@ class UserController extends Controller
         return Admin::grid(User::class, function (Grid $grid) {
             $grid->model()->orderBy('created_at','desc');
             $grid->filter(function($filter){
-                $filter->like('mobile');
-                $filter->like('name');
+                $filter->like('mobile','手机号');
+                $filter->like('name','昵称');
             });
             $grid->disableCreateButton();
             $grid->id('ID')->sortable();
-            $grid->column('name');
+            $grid->column('name','昵称');
             $grid->column('mobile','手机');
             $grid->column('money','余额');
             $grid->column('vip','是否会员')->display(function($vip){
-                return $vip >\Carbon\Carbon::now()  ? "<span>是</span><br><span>{$vip}</span>" :  '否';
+                return $vip >\Carbon\Carbon::now()  ? "<span>{$vip}</span>" :  '否';
             });
             
             $grid->column('status','审核')->display(function($status){

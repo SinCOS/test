@@ -155,6 +155,12 @@ class HomeController extends Controller
         $item = DC::where('uid','=',$user->id)->first();
         return view('usercenter',['user' => $user,'weiUser'=>$weiUser,'isStatus' => $item,'vip' => ($user->vip > \Carbon\Carbon::now())]);
     }
+    public function DCItem(){
+        $this->check();
+        $user = \Auth::user();
+        $list = DC::where('uid','=',$user->id)->$get();
+        return view('list',['arrays' => $list]);
+    }
     public function uploadimg(Request $request)
     {
   

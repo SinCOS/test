@@ -69,7 +69,8 @@
     <!--au_inlist-->
     <div class="au_inlist">
         <ul>
-
+            <li><a href=""><img src="/app/images/home_serviceClick.png">我的众筹<span></span></a></li>
+            <li><a href=""><img src="/app/images/home_serviceClick.png">我的投标span></span></a></li>
             <li><a href="tel:0573-83980959"><img src="/app/images/home_serviceClick.png">联系平台<span></span></a></li>
         </ul>
     </div>
