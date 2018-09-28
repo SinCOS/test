@@ -705,7 +705,7 @@
 
     function yqsyCal(money) {
         var ll = {{$detail->ll}};
-        $('#yqsy').text(money * (1+ll/100).toFixed(2) + "元");
+        $('#yqsy').text((money * (1+ll/100)).toFixed(2) + "元");
     }
 
 
